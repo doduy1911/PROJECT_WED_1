@@ -1,0 +1,32 @@
+mixin pagination(pagination)
+    ul(class="pagination")
+                - var startPage = Math.max(1, pagination.currentPage - 1);
+                - var endPage = Math.min(pagination.totalpages, startPage + 2);
+                if(pagination.currentPage == 1)
+                    li(class="page-item")
+                        button(class="page-link"
+                        button-pagination=pagination.totalpages
+                        ) Trang Cuối
+                if(pagination.currentPage > 1)
+                    li(class="page-item")
+                        button(class="page-link"
+                        button-pagination=pagination.currentPage -1
+                        ) Trang TRước
+                -for(var i=startPage;i <= endPage; i++)
+                    li(class=`page-item ${pagination.currentPage == i ? "active" : ""} `)
+                        button(class="page-link"
+                        button-pagination=i
+                        ) #{i}
+                if(pagination.currentPage < pagination.totalpages)
+                    li(class="page-item")
+                        button(class="page-link"
+                        button-pagination=pagination.currentPage + 1
+                        ) kế tiếp
+                if(pagination.currentPage == pagination.totalpages)
+                    li(class="page-item")
+                        button(class="page-link"
+                        button-pagination=1
+                        ) Trang Đầu
+
+
+

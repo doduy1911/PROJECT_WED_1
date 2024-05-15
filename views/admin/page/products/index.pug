@@ -1,0 +1,119 @@
+extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/change-multi.pug
+include ../../mixins/alert.pug
+ link(rel="stylesheet", href="/admin/css/style.css")
+block main
+    +alert-success(time)
+    h1(class="mb-4") Trang Danh Sách Sản Phẩm 
+
+    .card.mb-3 
+        .card-header Bộ Lọc Và Tìm Kiếm 
+        .card-body 
+            .row
+                .col-6 
+                    +filter-status(filterstatus)
+                .col-6 
+                    +search(keyword)
+            
+    .card.mb-3 
+        .card-header Danh Sách 
+        .card-body
+            .row 
+                .col-8 
+                    +change-multi(`/${prefix}/product/change-multi?_method=PATCH`)
+                .col-4 
+                    a(href=`/${prefix}/product/create`
+                    class="btn btn-outline-success"
+                    ) + Thêm Mới
+             
+                        
+            table(class="table.table-hover.table-sm" checkbox-multi)
+                thead 
+                    th 
+                        input(type="checkbox" name="checkall")
+                    th STT 
+                    th Hình ảnh
+                    th Tiều Đề
+                    th Giá
+                    th Vị Trí
+                    th TRạng Thái
+                    th Hành Động
+                tbody 
+                    if(products.length>0)
+                        each item ,index in products 
+                            tr 
+                                td 
+                                    input(type="checkbox" name="id",value=item.id)
+                                    
+                                td #{index + 1 }
+                                td 
+                                    img(src=item.thumbnail, alt=""
+                                    width="100px"
+                                    height="auto"
+                                    )
+                                td #{item.title}
+                                td #{item.price}$
+                                td 
+                                    input(
+                                        type="number"
+                                        name="position"
+                                        value = item.position
+                                        style="width:60px"
+                                        min = "1")
+
+                                td 
+                                    if(item.status == "active")
+                                        button( 
+                                        class="badge badge-success"
+                                        button-change-status 
+                                        data-status=item.status 
+                                        data-id=item.id
+                                        ) Hoạt Động
+                                    else 
+                                        button(
+                                        class="badge badge-danger"
+                                        button-change-status 
+                                        data-status=item.status 
+                                        data-id=item.id
+                                        ) Dừng Hoạt Động
+
+                                td 
+                                    a(
+                                        href=`/${prefix}/product/detail/${item.id}`
+                                        class="btn btn-secondary btn-sm"
+                                    ) Xem Chi Tiết
+                                    a(
+                                        href=`/${prefix}/product/edit/${item.id}`
+                                        class="btn btn-warning btn-sm"
+                                    ) Sửa
+                                    button(
+                                        class="btn btn-danger btn-sm ml-1"
+                                        button-delete 
+                                        data-id=item.id
+                                        ) Xóa
+                                    
+                    else 
+                        tr 
+                            td(colspan="7"
+                            class="text-center") không tồn tại sản phẩm 
+
+        form(
+            id="form-change-status"
+            method="POST"
+            action=""
+            data-patch=`/${prefix}/product/change-status`
+        )
+        form(
+            id="form-delete-item"
+            method="POST"
+            action=""
+            data-patch=`/${prefix}/product/delete`
+        )  
+           
+
+                          
+        //tý viết code ở đây
+        +pagination(pagination)

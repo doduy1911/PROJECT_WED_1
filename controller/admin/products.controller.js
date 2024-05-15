@@ -142,10 +142,10 @@ module.exports.createPost = async (req,res) => {
         req.body.position=parseInt(req.body.position)
     }
 
-    if(req.file && req.file.filename) {
-        req.body.thumbnail= `/uploads/${req.file.filename}`;
-    }
-    console.log(req.body)
+    // if(req.file && req.file.filename) {
+    //     req.body.thumbnail= `/uploads/${req.file.filename}`;
+    // }
+    // console.log(req.body)
     
 
     const product = new Product(req.body)
@@ -186,17 +186,17 @@ module.exports.editPatch = async (req,res) => {
     req.body.discountPercentage = parseInt(req.body.discountPercentage)
     req.body.stock = parseInt(req.body.stock)
     req.body.position=parseInt(req.body.position)
-    if(req.file && req.file.filename) {
-        req.body.thumbnail= `/uploads/${req.file.filename}`;
-    }
+    // if(req.file && req.file.filename) {
+    //     req.body.thumbnail= `/uploads/${req.file.filename}`;
+    // }
     
-    // await Product.updateOne({_id: id}, req.body);
+    await Product.updateOne({_id: id}, req.body);
     req.flash('success',"CẬP NHẬT SẢN PHẨM THÀNH CÔNG")
     
-    console.log(req.body)
-    // chỗ này phải là /${prefix}/product nhưng thôi fix sau vì đang lười vc
+    // console.log(req.body)
+    // chỗ này phải là /${prefix}/product
     res.redirect("/admin/product")
-    // cần làm phát triển thêm phần thông báo là đã thêm thành công nhưng do lười nên thôi
+    // cần làm phát triển thêm phần thông báo là đã thêm thành công 
 
 }
 

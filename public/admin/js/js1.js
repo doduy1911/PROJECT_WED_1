@@ -1,7 +1,7 @@
 const uploadImage = document.querySelector('[upload-image]');
 
 // Sử dụng biến upload
-console.log(uploadImage);
+// console.log(uploadImage);
 if(uploadImage){
     const uploadImageInput = document.querySelector('[upload-image-input]');
     const uploadImagePreview = document.querySelector('[upload-image-preview]');

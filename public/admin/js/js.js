@@ -121,6 +121,7 @@ if (checkboxmulti) {
 // end checkbox-multifalse
 // form change multi
 const formchangemulti = document.querySelector("[form-change-multi]")
+// console.log(formchangemulti)
 formchangemulti.addEventListener("submit", (e) => {
     //hàm preventDefault ngăn chặn hành động mặc định (ở đây là ngăn chuyển trang khi submid form )
     e.preventDefault();

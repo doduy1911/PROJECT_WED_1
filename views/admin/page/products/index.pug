@@ -4,6 +4,7 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/change-multi.pug
 include ../../mixins/alert.pug
+include ../../mixins/sort.pug
  link(rel="stylesheet", href="/admin/css/style.css")
 block main
     +alert-success(time)
@@ -17,7 +18,14 @@ block main
                     +filter-status(filterstatus)
                 .col-6 
                     +search(keyword)
-            
+    .card.mb-3 
+        .card-body  
+            .row 
+                .col-4  
+                    +sort()
+                    
+
+
     .card.mb-3 
         .card-header Danh Sách 
         .card-body

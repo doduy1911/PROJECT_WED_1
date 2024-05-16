@@ -226,3 +226,39 @@ if(showAlert){
 
   
 //end upload image
+
+// sort
+const sort = document.querySelector("[sort]")
+// console.log(sort)
+if(sort){
+    const sortSelect = sort.querySelector("[sort-select]")
+    const sortClear = sort.querySelector("[sort-clear]")
+    let url = new URL(window.location.href);
+    sortSelect.addEventListener("change",(e)=>{
+        const value = e.target.value
+        // console.log(e.target.value.split(" "));
+
+        const [sortKey,sortvalue] = value.split("-")
+        // console.log(sortKey)
+        // console.log(sortvalue)
+        url.searchParams.set("sortKey",sortKey)
+        url.searchParams.set("sortValue",sortvalue)
+
+        window.location.href = url.href
+
+    })
+    console.log(sortClear)
+    sortClear.addEventListener("click",()=>{
+        url.searchParams.delete("sortKey")
+        url.searchParams.delete("sortValue")
+        window.location.href = url.href
+    
+    
+    
+      })
+}
+
+// xóa sắp Xếp
+  
+// end Xóa Sắp Xếp
+// end sort

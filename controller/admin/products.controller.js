@@ -29,9 +29,23 @@ module.exports.index = async (req, res) => {
     const countPagination = await Product.count(find)
     const objectPagination = paginationHepers(req.query,countPagination,initobjectPagination)
 //  kết thúc phần phân trang 
+// sort sắp xếp theo tiêu chí
+let sort = {
+
+};
+if(req.query.sortKey && req.query.sortValue) {
+    sort[req.query.sortKey] = req.query.sortValue
+}else{
+    sort.position = "desc"
+
+}
+// console.log(sort)
+// xóa sắp xếp thoe tiêu chí
+// end sắp xếp theo tiêu chí
+// end sort
     const products = await Product.find(find)
     // asc là tăng dần desc là tăng dần
-    .sort({position: 'desc'})
+    .sort(sort)
     .limit(objectPagination.limitItems)
     .skip(objectPagination.skip)
     res.render("admin/page/products/index", {

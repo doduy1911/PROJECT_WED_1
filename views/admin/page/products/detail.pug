@@ -1,41 +1,62 @@
 extends ../../layouts/default.pug
-block main 
-    if(product.title)
-        h1(class="mb-4") <b>#{product.title}</b>
 
-    if(product.price)
-        div(class="mb-4") Giá : <b>#{product.price}</b>
+block main
+    .product-detail-container
+        if (product.title)
+            h1.product-title #{product.title}
 
-    
-    if(product.discountPercentage)
-        div(class="mb-4") Giảm Giá : <b>#{product.discountPercentage}</b>
+        .product-info
+            if (product.thumbnail)
+                .product-image
+                    img(src=product.thumbnail, alt=`Hình ảnh của #{product.title}`, style="width:300px; height:auto;")
 
-    
-    if(product.stock)
-        div(class="mb-4") Còn Lại : <b>#{product.stock}</b>
+            .product-details
+                if (product.price)
+                    div.product-price 
+                        span Giá: 
+                        b #{product.price} VND
 
-    if(product.thumbnail)
-        div(class="mb-4")
-            img(
-                src=product.thumbnail, 
-                al=`hình ảnh1 #{product.title}`
-                style = "width:100px"            
-                )    
-    if(product.status)
-        div(class="mb-4")
-            span Trạng Thái :
-            if (product.status == "active")
-                span(class="badge badge-success") Hoạt Động
-            
-            else 
-                span(class="badge badge-danger") Dừng Hoạt Động
-    if(product.position)
-        div(class="mb-4") Vị Trí : <b>#{product.position}</b>
-    
-    if(product.description)
-        div(class="mb-4")   #{product.description}
-    
+                if (product.discountPercentage)
+                    div.product-discount
+                        span Giảm Giá: 
+                        b #{product.discountPercentage}%
 
+                if (product.stock)
+                    div.product-stock
+                        span Còn Lại: 
+                        b #{product.stock} sản phẩm
 
-            
+                if (product.status)
+                    div.product-status
+                        span Trạng Thái:
+                        if (product.status == "active")
+                            span.badge.badge-success Hoạt Động
+                        else
+                            span.badge.badge-danger Dừng Hoạt Động
 
+                if (product.position)
+                    div.product-position
+                        span Vị Trí: 
+                        b #{product.position}
+
+        if (product.description)
+            .product-description
+                h2 Mô Tả Sản Phẩm
+                p #{product.description}
+
+        .additional-info
+            if (product.specifications)
+                .product-specifications
+                    h2 Thông Số Kỹ Thuật
+                    ul
+                        each spec, index in product.specifications
+                            li #{spec}
+
+            if (product.reviews)
+                .product-reviews
+                    h2 Đánh Giá Sản Phẩm
+                    ul
+                        each review, index in product.reviews
+                            li
+                                span.badge.badge-primary #{review.rating} sao
+                                span #{review.comment}

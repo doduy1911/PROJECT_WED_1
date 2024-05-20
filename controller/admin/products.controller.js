@@ -59,7 +59,7 @@ if(req.query.sortKey && req.query.sortValue) {
 
 //[  ] /admin/products/chang-status/:id  thay đổi trạng thái từng sản phẩm 
 module.exports.changeStatus = async (req,res) => {
-    console.log("changeStatus")
+    // console.log("changeStatus")
     const status = req.params.status
     const id = req.params.id
       

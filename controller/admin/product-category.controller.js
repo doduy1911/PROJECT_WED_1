@@ -1,4 +1,4 @@
-const Product = require("../../models/product.model")
+const Product = require("../../models/product-category.model")
 const filterstatusHepers = require("../../helper/filterStatus")
 const seach = require("../../helper/seach")
 const paginationHepers = require("../../helper/pagination")
@@ -48,7 +48,7 @@ if(req.query.sortKey && req.query.sortValue) {
     .sort(sort)
     .limit(objectPagination.limitItems)
     .skip(objectPagination.skip)
-    res.render("admin/page/products/index", {
+    res.render("admin/page/product_category/index.pug", {
         title: "Danh sách sản phẩm",
         products: products,
         filterstatus: filterstatus,
@@ -134,7 +134,7 @@ module.exports.deleteItem = async (req,res) => {
 }
 
 module.exports.create = async (req,res) => {
-    res.render("admin/page/products/create",{
+    res.render("admin/page/product_category/create",{
         titlepage: "Tạo Mới Một Sản Phẩm"
     })
     
@@ -167,7 +167,7 @@ module.exports.createPost = async (req,res) => {
     
     // console.log(req.body)
     // chỗ này phải là /${prefix}/product nhưng thôi fix sau vì đang lười vc
-    res.redirect("/admin/product")
+    res.redirect("/admin/product_category")
     // cần làm phát triển thêm phần thông báo là đã thêm thành công nhưng do lười nên thôi
 
 }
@@ -182,14 +182,14 @@ module.exports.edit = async (req,res) => {
     })
     // console.log(product)
 
-    res.render("admin/page/products/edit",{
+    res.render("admin/page/product_category/edit",{
         titlepage: "chỉnh sửa Một Sản Phẩm",
         product: product
     })
     
         
     } catch (error) {
-        res.redirect(`/admin/product`)
+        res.redirect(`/admin/product_category`)
         
     }
 }
@@ -209,7 +209,7 @@ module.exports.editPatch = async (req,res) => {
     
     // console.log(req.body)
     // chỗ này phải là /${prefix}/product
-    res.redirect("/admin/product")
+    res.redirect("/admin/product_category")
     // cần làm phát triển thêm phần thông báo là đã thêm thành công 
 
 }
@@ -224,13 +224,13 @@ module.exports.detail = async (req,res) => {
     })
     // console.log(product)
 
-    res.render("admin/page/products/detail",{
+    res.render("admin/page/product_category/detail",{
         titlepage: "chi tiết Sản Phẩm",
         product: product
     })
         
     } catch (error) {
-        res.redirect(`/admin/product`)
+        res.redirect(`/admin/product_category`)
         
     }
     

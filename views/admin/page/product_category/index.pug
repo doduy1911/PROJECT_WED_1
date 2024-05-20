@@ -8,7 +8,7 @@ include ../../mixins/sort.pug
  link(rel="stylesheet", href="/admin/css/style.css")
 block main
     +alert-success(time)
-    h1(class="mb-4") Trang Danh Sách Sản Phẩm 
+    h1(class="mb-4") Trang Danh Mục Sản Phẩm 
 
     .card.mb-3 
         .card-header Bộ Lọc Và Tìm Kiếm 
@@ -31,9 +31,9 @@ block main
         .card-body
             .row 
                 .col-8 
-                    +change-multi(`/${prefix}/product/change-multi?_method=PATCH`)
+                    +change-multi(`/${prefix}/product_category/change-multi?_method=PATCH`)
                 .col-4 
-                    a(href=`/${prefix}/product/create`
+                    a(href=`/${prefix}/product_category/create`
                     class="btn btn-outline-success"
                     ) + Thêm Mới
              
@@ -44,8 +44,7 @@ block main
                         input(type="checkbox" name="checkall")
                     th STT 
                     th Hình ảnh
-                    th Tiều Đề
-                    th Giá
+                    th(style="margin-left: 20px") Tiều Đề
                     th Vị Trí
                     th TRạng Thái
                     th Hành Động
@@ -62,8 +61,8 @@ block main
                                     width="100px"
                                     height="auto"
                                     )
-                                td #{item.title}
-                                td #{item.price}$
+                                td(style="width:200px ") #{item.title}
+                                
                                 td 
                                     input(
                                         type="number"
@@ -90,11 +89,11 @@ block main
 
                                 td 
                                     a(
-                                        href=`/${prefix}/product/detail/${item.id}`
+                                        href=`/${prefix}/product_category/detail/${item.id}`
                                         class="btn btn-secondary btn-sm"
                                     ) Xem Chi Tiết
                                     a(
-                                        href=`/${prefix}/product/edit/${item.id}`
+                                        href=`/${prefix}/product_category/edit/${item.id}`
                                         class="btn btn-warning btn-sm"
                                     ) Sửa
                                     button(
@@ -112,13 +111,13 @@ block main
             id="form-change-status"
             method="POST"
             action=""
-            data-patch=`/${prefix}/product/change-status`
+            data-patch=`/${prefix}/product_category/change-status`
         )
         form(
             id="form-delete-item"
             method="POST"
             action=""
-            data-patch=`/${prefix}/product/delete`
+            data-patch=`/${prefix}/product_category/delete`
         )  
            
 

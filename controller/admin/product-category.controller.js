@@ -59,7 +59,7 @@ if(req.query.sortKey && req.query.sortValue) {
 
 //[  ] /admin/products/chang-status/:id  thay đổi trạng thái từng sản phẩm 
 module.exports.changeStatus = async (req,res) => {
-    console.log("changeStatus")
+    // console.log("changeStatus")
     const status = req.params.status
     const id = req.params.id
       
@@ -84,7 +84,7 @@ module.exports.changeMulti = async (req,res) => {
             break;
         case "delete-all":
             //nếu muốn xóa cứng thì đổi updatemany thành deletevalue
-            await Product.updateMany({_id:{$in:ids}},{
+            await Product.deleteMany({_id:{$in:ids}},{
                 deleted:true,
                 deletedAt: new Date()
             })
@@ -134,8 +134,36 @@ module.exports.deleteItem = async (req,res) => {
 }
 
 module.exports.create = async (req,res) => {
+    let find = {
+        deleted: false,
+    } 
+    
+    const products = await Product.find(find)
+    function createTree(arr,parent_id=""){
+        const tree = [];
+        arr.forEach((item) => {
+            if(item.parent_id == parent_id){
+                const newItem = item
+                const children = createTree(arr,item.id);
+                if(children.length > 0 ){
+                    newItem.children = children
+                }
+                tree.push(newItem);
+            }
+
+            
+        });
+        return tree;
+
+    }
+
+    const newrecord = createTree(products)
+    // console.log(newrecord)
+    
+
     res.render("admin/page/product_category/create",{
-        titlepage: "Tạo Mới Một Sản Phẩm"
+        titlepage: "Tạo Mới Một Sản Phẩm",
+        products:newrecord
     })
     
 }

@@ -1,6 +1,9 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+
 block main
+    div #{products}
     +alert-error(5000)
     h1(class="mb-4") Thêm Mới Một Sản Phẩm  
     form(action=`/${prefix}/product_category/create` method="POST" enctype="multipart/form-data" class="smail_form")
@@ -11,6 +14,25 @@ block main
             id="title"
             name="title"
             required)
+        div(class="form-group")
+            label(for="parent_id") Danh Mục Cha
+            select(
+                name="parent_id"
+                id="parent_id"
+                class="form-control"
+            )
+                option(value="") -- chọn danh mục cha --- 
+                //-     if(products)
+                //-         each product in products
+                //-             option(value=product.id) #{product.title}             
+                +select-tree(products)
+            //- input(
+            //-     type="text"
+            //-     class="form-control"
+            //-     id="parent_id"
+            //-     name="parent_id"
+ 
+            //-  )
         div(class="form-group")
             label(for="desc") Mô Tả
             textarea(

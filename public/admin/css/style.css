@@ -104,3 +104,142 @@
   .image-preview[src=""] {
     display: none;
   }
+
+  /* danh mục sản phẩm  */
+  /* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Container styles */
+.product-detail-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Product title styles */
+.product-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Product info styles */
+.product-info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.product-image {
+  flex: 0 0 300px;
+  margin-right: 20px;
+}
+
+.product-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-image img:hover {
+  transform: scale(1.05);
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-price, .product-discount, .product-stock, .product-status, .product-position {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Product description styles */
+.product-description {
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.product-description h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Additional info styles */
+.additional-info {
+  margin-bottom: 30px;
+}
+
+.product-specifications h2, .product-reviews h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.product-specifications ul, .product-reviews ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.product-specifications li, .product-reviews li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.product-specifications li::before, .product-reviews li::before {
+  content: '\2022';
+  color: #28a745;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.product-specifications li, .product-reviews li {
+  position: relative;
+}
+
+.product-specifications li::before, .product-reviews li::before {
+  position: absolute;
+  left: -20px;
+}
+
+/* Hover effect for list items */
+.product-specifications li:hover, .product-reviews li:hover {
+  color: #28a745;
+}

@@ -3,7 +3,7 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main
-    div #{products}
+    //- div #{products}
     +alert-error(5000)
     h1(class="mb-4") Thêm Mới Một Sản Phẩm  
     form(action=`/${prefix}/product_category/create` method="POST" enctype="multipart/form-data" class="smail_form")

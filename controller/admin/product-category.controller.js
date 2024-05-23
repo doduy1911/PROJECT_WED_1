@@ -3,6 +3,7 @@ const filterstatusHepers = require("../../helper/filterStatus")
 const seach = require("../../helper/seach")
 const paginationHepers = require("../../helper/pagination")
 const { response } = require("express")
+const createTree = require("../../helper/createTree")
 //[get] /admin/products
 module.exports.index = async (req, res) => {
     const filterstatus = filterstatusHepers(req.query)
@@ -43,14 +44,18 @@ if(req.query.sortKey && req.query.sortValue) {
 // xóa sắp xếp thoe tiêu chí
 // end sắp xếp theo tiêu chí
 // end sort
+
     const products = await Product.find(find)
+
     // asc là tăng dần desc là tăng dần
     .sort(sort)
     .limit(objectPagination.limitItems)
-    .skip(objectPagination.skip)
+    .skip(objectPagination.skip);
+    const newrecord = createTree(products)
+
     res.render("admin/page/product_category/index.pug", {
-        title: "Danh sách sản phẩm",
-        products: products,
+        titlepage: "Danh Mục sản phẩm",
+        products: newrecord,
         filterstatus: filterstatus,
         keyword: object_seach.keyword,
         pagination:objectPagination
@@ -139,27 +144,10 @@ module.exports.create = async (req,res) => {
     } 
     
     const products = await Product.find(find)
-    function createTree(arr,parent_id=""){
-        const tree = [];
-        arr.forEach((item) => {
-            if(item.parent_id == parent_id){
-                const newItem = item
-                const children = createTree(arr,item.id);
-                if(children.length > 0 ){
-                    newItem.children = children
-                }
-                tree.push(newItem);
-            }
-
-            
-        });
-        return tree;
-
-    }
-
+    
     const newrecord = createTree(products)
     // console.log(newrecord)
-    
+
 
     res.render("admin/page/product_category/create",{
         titlepage: "Tạo Mới Một Sản Phẩm",
@@ -263,5 +251,3 @@ module.exports.detail = async (req,res) => {
     }
     
 }
-
-

@@ -55,7 +55,7 @@ if(req.query.sortKey && req.query.sortValue) {
 
     res.render("admin/page/product_category/index.pug", {
         titlepage: "Danh Mục sản phẩm",
-        products: newrecord,
+        products: products,
         filterstatus: filterstatus,
         keyword: object_seach.keyword,
         pagination:objectPagination

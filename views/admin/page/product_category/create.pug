@@ -21,10 +21,7 @@ block main
                 id="parent_id"
                 class="form-control"
             )
-                option(value="") -- chọn danh mục cha --- 
-                //-     if(products)
-                //-         each product in products
-                //-             option(value=product.id) #{product.title}             
+                option(value="") -- chọn danh mục cha ---          
                 +select-tree(products)
             //- input(
             //-     type="text"

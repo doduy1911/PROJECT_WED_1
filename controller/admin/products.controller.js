@@ -1,8 +1,12 @@
 const Product = require("../../models/product.model")
+const Product1 = require("../../models/product-category.model")
+
 const filterstatusHepers = require("../../helper/filterStatus")
 const seach = require("../../helper/seach")
 const paginationHepers = require("../../helper/pagination")
 const { response } = require("express")
+const createTree = require("../../helper/createTree")
+
 //[get] /admin/products
 module.exports.index = async (req, res) => {
     const filterstatus = filterstatusHepers(req.query)
@@ -134,8 +138,17 @@ module.exports.deleteItem = async (req,res) => {
 }
 
 module.exports.create = async (req,res) => {
+    let find = {
+        deleted: false,
+    } 
+    
+    const products = await Product1.find(find)
+    
+    const newrecord = createTree(products)
     res.render("admin/page/products/create",{
-        titlepage: "Tạo Mới Một Sản Phẩm"
+        titlepage: "Tạo Mới Một Sản Phẩm",
+        products:newrecord
+
     })
     
 }

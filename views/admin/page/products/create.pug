@@ -1,5 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+
 block main
     +alert-error(5000)
     h1(class="mb-4") Thêm Mới Một Sản Phẩm  
@@ -11,6 +13,15 @@ block main
             id="title"
             name="title"
             required)
+        div(class="form-group")
+            label(for="parent_id") Danh Mục
+            select(
+                name="parent_id"
+                id="parent_id"
+                class="form-control"
+            )
+                option(value="") -- chọn danh mục ---          
+                +select-tree(products)
         div(class="form-group")
             label(for="desc") Mô Tả
             textarea(

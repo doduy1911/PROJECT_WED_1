@@ -1,0 +1,47 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+
+block main
+    +alert-error(5000)
+    h1(class="mb-4") Chỉnh Sửa Nhóm Quyền  
+    form(action=`/${prefix}/roles/edit/${roles.id}?_method=PATCH` method="POST")
+        div(class="form-group")
+            label(for="title") Tiêu Đề
+            input(type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            value=roles.title
+            
+            required)
+        div(class="form-group")
+            label(for="desc") Mô Tả
+            textarea(
+            class="form-control"
+            id="desc"
+            name="description"
+            value=roles.description
+           
+            rows="5")
+        div(class="form-group form-checck form-check-inline")
+            input(type="radio"
+            class="form-check-input"
+            id="statusActive"
+            name="status"
+            value="active"
+            ) 
+            label(for="statusInActive" class="form-check-label") Hoạt Động
+        div(class="form-group form-checck form-check-inline")
+            input(type="radio"
+            class="form-check-input"
+            id="statusActive"
+            name="status"
+            value="inactive"
+            ) 
+            label(for="statusInActive" class="form-check-label") Dừng Hoạt Động
+        div(class="form-group")
+            button(
+                type="submit"
+                class="btn btn-primary"
+            ) Cập Nhật

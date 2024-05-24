@@ -23,3 +23,46 @@ module.exports.createPost = async (req, res) => {
     req.flash("success","thêm Nhóm Quyền Thành công")
     res.redirect("/admin/roles")
   }
+
+module.exports.edit = async (req, res) => {
+  try {
+    const id = req.params.id
+const roles = await Rolse.findOne({
+    _id: id,
+    deleted: false
+})
+// console.log(product)
+
+res.render("admin/page/roles/edit.pug",{
+  titlepage:"chỉnh sửa Nhóm Quyền ",
+  roles:roles
+})
+
+
+    
+} catch (error) {
+    res.redirect(`/admin/roles`)
+    
+}}
+
+module.exports.editPatch = async (req, res) => {
+  const id = req.params.id
+  await Rolse.updateOne({_id: id}, req.body);
+    req.flash('success',"CẬP NHẬT Quyền THÀNH CÔNG")
+    
+    // console.log(req.body)
+    // chỗ này phải là /${prefix}/product
+    res.redirect("/admin/roles")
+
+}
+
+module.exports.delete = async (req, res) => {
+  const id = req.params.id
+    await Rolse.deleteOne({_id: id})
+    // console.log(id)
+    res.redirect("back")
+}
+
+
+
+   

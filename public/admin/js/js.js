@@ -169,6 +169,7 @@ formchangemulti.addEventListener("submit", (e) => {
 // end form change multi
 
 const buttondelete = document.querySelectorAll("[button-delete]")
+console.log(buttondelete)
 if (buttondelete.length > 0) {
     const formdeleteitem = document.querySelector("#form-delete-item")
     const path = formdeleteitem.getAttribute("data-patch")

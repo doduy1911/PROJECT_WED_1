@@ -62,6 +62,16 @@ module.exports.delete = async (req, res) => {
     // console.log(id)
     res.redirect("back")
 }
+module.exports.permission = async (req, res) => {
+  const records = await Rolse.find({
+    deleted: false
+  })
+  res.render("admin/page/roles/permission.pug",{
+    records:records,
+    titlepage:"Phân Quyền "
+
+  })
+}
 
 
 

@@ -1,0 +1,46 @@
+extends ../../layouts/default.pug
+block main 
+    h1(class="mb-4") Phân Quyền
+    div #{records}
+    div(class="text-right")
+        button(
+            type="submit",
+            class="btn btn-primary mb-3"
+            button-submit
+
+        ) Cập Nhật
+
+    table(class="table table-hover table-sm")
+        thead 
+            tr 
+                th Tính Năng
+                each item in  records
+                    th(class="text-center" ) #{item.title}
+                   
+
+        tbody 
+            tr 
+                td(colspan="4")
+                    b Danh Mục Sản Phẩm 
+            tr(data-name="products-category_view")
+                td Xem
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="products-category_create")
+                td Thêm Mới
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="products-category_edit")
+                td Chỉnh Sửa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="products-category_delete")
+                td Xóa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+
+                

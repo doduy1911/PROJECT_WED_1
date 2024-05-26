@@ -72,3 +72,4 @@ module.exports.editPost = async (req ,res) =>{
     res.redirect("/admin/account")
 
 }
+

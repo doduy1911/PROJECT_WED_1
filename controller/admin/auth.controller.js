@@ -38,3 +38,7 @@ module.exports.indexPost= async(req, res) => {
     res.cookie("token", user.token)
     res.redirect("/admin/dashboard")
 }
+module.exports.logout = async (req, res) => {
+    res.clearCookie("token")
+    res.redirect("/admin/auth/login")
+}

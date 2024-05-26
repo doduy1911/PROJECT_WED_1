@@ -29,6 +29,7 @@ block main
                 each item in  records
                     td(class="text-center")
                         input(type="text" value=item.id) 
+            //- danh mục sản phẩm
             tr 
                 td(colspan="4")
                     b Danh Mục Sản Phẩm 
@@ -48,6 +49,55 @@ block main
                     td(class="text-center")
                         input(type="checkbox")
             tr(data-name="products-category_delete")
+                td Xóa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+                        //- danh sách sản phẩm
+            tr 
+                td(colspan="4")
+                    b Danh sách Sản Phẩm 
+            tr(data-name="products_view")
+                td Xem
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="products_create")
+                td Thêm Mới
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="products_edit")
+                td Chỉnh Sửa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="products_delete")
+                td Xóa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+
+            //- nhóm quyền 
+            tr 
+                td(colspan="4")
+                    b Nhóm Quyền
+            tr(data-name="roles_view")
+                td Xem
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="roles_create")
+                td Thêm Mới
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="roles_edit")
+                td Chỉnh Sửa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="roles_delete")
                 td Xóa
                 each item in  records
                     td(class="text-center")

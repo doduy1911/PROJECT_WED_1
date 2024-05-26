@@ -7,6 +7,10 @@ router.post("/create",rolesController.createPost);
 router.get("/edit/:id",rolesController.edit);
 router.patch("/edit/:id",rolesController.editPatch);
 router.get("/delete/:id",rolesController.delete);
+router.get("/permission",rolesController.permission);
+router.patch("/permission",rolesController.permissionPatch);
+
+
 
 
 

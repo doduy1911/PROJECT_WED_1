@@ -4,6 +4,7 @@ include ../../mixins/alert.pug
 
 block main
     +alert-error(5000)
+    
     h1(class="mb-4") chỉnh sửa Tài Khoản
     form(action=`/${prefix}/account/edit/${data.id}?_method=PATCH` method="POST" enctype="multipart/form-data" class="smail_form")
         div(class="form-group")
@@ -20,14 +21,13 @@ block main
             class="form-control"
             id="email"
             name="email"
-            value=data.email
-
             required)
         div(class="form-group")
             label(for="password") Mật Khẩu
             input(type="password"
             class="form-control"
             id="password"
+            value=data.password
  
             name="password"
         )

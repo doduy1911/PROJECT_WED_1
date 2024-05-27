@@ -10,6 +10,7 @@ const flash = require('express-flash')
 const cookieParser = require('cookie-parser')
 // tương tự như parser
 const session = require('express-session')
+const moment = require('moment')
 
 
 const app = express()
@@ -60,6 +61,7 @@ routeradmin(app)
 app.use(express.static(`${__dirname}/public`))
 
 app.locals.prefix = prefix.prefix_admin;
+app.locals.moment= moment
 
 // // products
 // check connection

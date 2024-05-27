@@ -7,70 +7,54 @@ include ../../mixins/alert.pug
 include ../../mixins/sort.pug
 include ../../mixins/table-Tree.pug
 
- link(rel="stylesheet", href="/admin/css/style.css")
+    link(rel="stylesheet", href="/admin/css/style.css")
+
 block main
-    if(role.permissions.includes("products_view"))
-        +alert-success(time)
-        h1(class="mb-4") Trang Danh Mục Sản Phẩm 
+  if (role.permissions.includes("products_view"))
+    +alert-success(time)
+    h1(class="mb-4") Trang Danh Mục Sản Phẩm 
 
-        .card.mb-3 
-            .card-header Bộ Lọc Và Tìm Kiếm 
-            .card-body 
-                .row
-                    .col-6 
-                        +filter-status(filterstatus)
-                    .col-6 
-                        +search(keyword)
-        .card.mb-3 
-            .card-body  
-                .row 
-                    .col-4  
-                        +sort()
+    .card.mb-3 
+      .card-header Bộ Lọc Và Tìm Kiếm 
+      .card-body 
+        .row
+          .col-6 
+            +filter-status(filterstatus)
+          .col-6 
+            +search(keyword)
+    
+    .card.mb-3 
+      .card-body  
+        .row 
+          .col-4  
+            +sort()
                         
-
-
-        .card.mb-3 
-            .card-header Danh Sách 
-            .card-body
-                .row 
-                    .col-8 
-                        if(role.permissions.includes("products-category_edit"))
-                            +change-multi(`/${prefix}/product_category/change-multi?_method=PATCH`)
-                    .col-4 
-                        if(role.permissions.includes("products-category_create"))
-                            a(href=`/${prefix}/product_category/create`
-                            class="btn btn-outline-success"
-                            ) + Thêm Mới
+    .card.mb-3 
+      .card-header Danh Sách 
+      .card-body
+        .row 
+          .col-8 
+            if (role.permissions.includes("products-category_edit"))
+              +change-multi(`/${prefix}/product_category/change-multi?_method=PATCH`)
+          .col-4 
+            if (role.permissions.includes("products-category_create"))
+              a(href=`/${prefix}/product_category/create`, class="btn btn-outline-success") + Thêm Mới
                     
-                            
-                table(class="table.table-hover.table-sm" checkbox-multi)
-                    thead 
-                        th 
-                            input(type="checkbox" name="checkall")
-                        th STT 
-                        th Hình ảnh
-                        th(style="margin-left: 20px") Tiều Đề
-                        th Vị Trí
-                        th TRạng Thái
-                        th Hành Động
-                    tbody 
-                        +table-Tree()
+        table(class="table table-hover table-sm" checkbox-multi)
+          thead 
+            th 
+              input(type="checkbox" name="checkall")
+            th STT 
+            th Hình ảnh
+            th(style="margin-left: 20px") Tiều Đề
+            th Vị Trí
+            th TRạng Thái
+            th Hành Động
+          tbody 
+            +table-Tree()
                         
-                            
-            form(
-                id="form-change-status"
-                method="POST"
-                action=""
-                data-patch=`/${prefix}/product_category/change-status`
-            )
-            form(
-                id="form-delete-item"
-                method="POST"
-                action=""
-                data-patch=`/${prefix}/product_category/delete`
-            )  
-            
-
-                            
-            //tý viết code ở đây
-            +pagination(pagination)
+    form(id="form-change-status", method="POST", action="", data-patch=`/${prefix}/product_category/change-status`)
+    form(id="form-delete-item", method="POST", action="", data-patch=`/${prefix}/product_category/delete`)
+                                
+    //tý viết code ở đây
+    +pagination(pagination)

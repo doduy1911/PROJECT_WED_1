@@ -102,6 +102,36 @@ block main
                 each item in  records
                     td(class="text-center")
                         input(type="checkbox")
+            tr(data-name="roles_permissions")
+                td Phân Quyền
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            //- Tài Khoản 
+            tr 
+                td(colspan="4")
+                    b Tài Khoản 
+            tr(data-name="account_view")
+                td Xem
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="account_create")
+                td Thêm Mới
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="account_edit")
+                td Chỉnh Sửa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+            tr(data-name="account_delete")
+                td Xóa
+                each item in  records
+                    td(class="text-center")
+                        input(type="checkbox")
+        
 
     form(action=`/${prefix}/roles/permission?_method=PATCH`
     class="d-none"

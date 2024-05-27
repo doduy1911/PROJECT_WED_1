@@ -41,15 +41,17 @@ mixin table-Tree()
                     href=`/${prefix}/product_category/detail/${item.id}`
                     class="btn btn-secondary btn-sm"
                 ) Xem Chi Tiết
-                a(
-                    href=`/${prefix}/product_category/edit/${item.id}`
-                    class="btn btn-warning btn-sm"
-                ) Sửa
-                button(
-                    class="btn btn-danger btn-sm ml-1"
-                    button-delete 
-                    data-id=item.id
-                    ) Xóa
+                if(role.permissions.includes("products-category_edit"))
+                    a(
+                        href=`/${prefix}/product_category/edit/${item.id}`
+                        class="btn btn-warning btn-sm"
+                    ) Sửa
+                if(role.permissions.includes("products-category_delete"))
+                    button(
+                        class="btn btn-danger btn-sm ml-1"
+                        button-delete 
+                        data-id=item.id
+                        ) Xóa
                                         
                 
                             

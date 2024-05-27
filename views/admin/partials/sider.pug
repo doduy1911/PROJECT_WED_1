@@ -3,13 +3,22 @@
         ul 
             li 
                 a(href=`/${prefix}/dashboard`) Tổng Quan
-            li 
-                a(href=`/${prefix}/product`) Sản Phẩm
-            li 
-                a(href=`/${prefix}/product_category`) Danh Mục Sản Phẩm
-            li 
-                a(href=`/${prefix}/roles`) Nhóm Quyền
-            li 
-                a(href=`/${prefix}/roles/permission`) Phân Quyền
-            li 
-                a(href=`/${prefix}/account`) Tài Khoản
+
+            if(role.permissions.includes("products_view"))
+                li 
+                    a(href=`/${prefix}/product`) Sản Phẩm
+
+            if(role.permissions.includes("products-category_view"))
+                li 
+                    a(href=`/${prefix}/product_category`) Danh Mục Sản Phẩm
+
+            if(role.permissions.includes("roles_view"))
+                li 
+                    a(href=`/${prefix}/roles`) Nhóm Quyền
+            
+            if(role.permissions.includes("roles_permissions"))
+                li 
+                    a(href=`/${prefix}/roles/permission`) Phân Quyền
+            if(role.permissions.includes("account_view"))
+                li 
+                    a(href=`/${prefix}/account`) Tài Khoản

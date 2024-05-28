@@ -11,7 +11,6 @@ router.get("/",controller.index);
 router.get("/edit",controller.edit);
 router.patch("/edit",upload.single('avatar'),
 uploadCloud.upload,
-validates.createPost,
 controller.editPatch);
 
 

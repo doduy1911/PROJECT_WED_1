@@ -11,6 +11,9 @@ const cookieParser = require('cookie-parser')
 // tương tự như parser
 const session = require('express-session')
 const moment = require('moment')
+const accounts = require('./models/accounts.model')
+const Role = require('./models/rolse.model')
+
 
 
 const app = express()
@@ -62,6 +65,9 @@ app.use(express.static(`${__dirname}/public`))
 
 app.locals.prefix = prefix.prefix_admin;
 app.locals.moment= moment
+app.locals.user= accounts
+app.locals.role=Role
+
 
 // // products
 // check connection

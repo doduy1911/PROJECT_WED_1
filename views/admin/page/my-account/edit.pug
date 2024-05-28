@@ -3,11 +3,7 @@ include ../../mixins/alert
 block main 
     h1(class="mb-4") Cập Nhật Thông Tin Cá Nhân 
     +alert-success(3000)
-    form(action=`/${prefix}/my_account/edit?_method=PATCH`
-    class=""
-    method="POST"
-    enctype="multipart/form-data"
-    ) 
+    form(action=`/${prefix}/my_account/edit/?_method=PATCH` method="POST" enctype="multipart/form-data" class="smail_form")
         div(class="form-group")
             label(for="fullname") Họ Tên *
             input(type="text"

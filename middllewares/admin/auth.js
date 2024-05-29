@@ -3,7 +3,7 @@ const Role = require('../../models/rolse.model')
 
 
 module.exports.requireAuth = async (req,res,next)=>{
-    // console.log(req.cookies.token);
+    console.log(req.cookies.token);
     if(!req.cookies.token){
         res.redirect("/admin/auth/login");
         return

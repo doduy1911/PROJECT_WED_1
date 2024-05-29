@@ -21,13 +21,14 @@ block main
             class="form-control"
             id="email"
             name="email"
+            value=data.email
             required)
         div(class="form-group")
             label(for="password") Mật Khẩu
             input(type="password"
             class="form-control"
             id="password"
-            value=data.password
+            value=md5(data.password)
  
             name="password"
         )

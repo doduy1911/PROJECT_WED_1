@@ -6,13 +6,13 @@ const seach = require("../../helper/seach")
 const paginationHepers = require("../../helper/pagination")
 const { response } = require("express")
 const createTree = require("../../helper/createTree")
+const accounts = require("../../models/accounts.model")
 
 //[get] /admin/products
 module.exports.index = async (req, res) => {
     const filterstatus = filterstatusHepers(req.query)
     const object_seach = seach(req.query)
 
-    // chỗ này e nên dùng res.render()
     let find = {
         deleted: false,
     }
@@ -52,8 +52,21 @@ if(req.query.sortKey && req.query.sortValue) {
     .sort(sort)
     .limit(objectPagination.limitItems)
     .skip(objectPagination.skip)
+
+    for(const product of products) {
+        const user = await accounts.findOne({
+            _id : product.createdBy.account_Id
+        });
+        // console.log(user)
+        if(user){
+                    product.createdBy.accountsfullName = user.fullname
+
+
+        }
+
+    }
     res.render("admin/page/products/index", {
-        title: "Danh sách sản phẩm",
+        titlepage: "Danh sách sản phẩm",
         products: products,
         filterstatus: filterstatus,
         keyword: object_seach.keyword,
@@ -88,9 +101,14 @@ module.exports.changeMulti = async (req,res) => {
             break;
         case "delete-all":
             //nếu muốn xóa cứng thì đổi updatemany thành deletevalue
-            await Product.updateMany({_id:{$in:ids}},{
+            await Product.deleteMany({_id:{$in:ids}},{
                 deleted:true,
-                deletedAt: new Date()
+                // deletedAt: new Date()
+                deleteBy: {
+                    account_Id : res.locals.user.id,
+                    deleteAt: new Date(),
+                      
+                }
             })
             req.flash("info", `xóa  thành công ${ids.length} sản phẩm!`);
 
@@ -115,27 +133,33 @@ module.exports.changeMulti = async (req,res) => {
 //[  DELETE] /admin/products/delete
 
 //xóa cứng (xóa là hết)
-// module.exports.deleteItem = async (req,res) => {
-//     const id = req.params.id
-//     await Product.deleteOne({_id: id})
-//     console.log(id)
-//     res.redirect("back")
-// }
+module.exports.deleteItem = async (req,res) => {
+    const id = req.params.id
+    await Product.deleteOne({_id: id})
+    console.log(id)
+    res.redirect("back")
+}
 //[  DELETE] /admin/products/delete
 
 //xóa Mềm (xóa nhưng vẫn có trong CSDL)
-module.exports.deleteItem = async (req,res) => {
-    const id = req.params.id
-    await Product.updateOne({_id: id},{
-        deleted:true,
-        deletedAt: new Date()
-    })
-    req.flash("info", `xóa thành công sản phẩm!`);
+// module.exports.deleteItem = async (req,res) => {
+//     const id = req.params.id
+//     await Product.updateOne({_id: id},{
+//         deleted:true,
+//         deletedAt: new Date()
+//         // deleteBy: {
+//         //     account_Id : res.locals.user.id,
+//         //     deleteAt: new Date(),
+              
+//         // }
+//     })
+//     req.flash("info", `xóa thành công sản phẩm!`);
+//     console.log(res.locals.user.id)
 
     
-    // console.log(id)
-    res.redirect("back")
-}
+//     // console.log(id)
+//     res.redirect("back")
+// }
 
 module.exports.create = async (req,res) => {
     let find = {
@@ -154,6 +178,9 @@ module.exports.create = async (req,res) => {
 }
 
 module.exports.createPost = async (req,res) => {
+    // console.log(res.locals.role)
+    console.log(res.locals.user.id)
+
 
     
     req.body.price = parseInt(req.body.price)
@@ -168,6 +195,9 @@ module.exports.createPost = async (req,res) => {
     }else{
         req.body.position=parseInt(req.body.position)
     }
+    req.body.createdBy = {
+        account_Id:res.locals.user.id
+    };
 
     // if(req.file && req.file.filename) {
     //     req.body.thumbnail= `/uploads/${req.file.filename}`;

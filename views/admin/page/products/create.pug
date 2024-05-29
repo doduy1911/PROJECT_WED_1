@@ -23,6 +23,25 @@ block main
                 )
                     option(value="") -- chọn danh mục ---          
                     +select-tree(products)
+
+            div(class="form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="featured1"
+                    name="featured"
+                    value="1"
+                    )
+                label(for="featured1" class="form-check-label") Nổi Bật
+            div(class="form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="featured0"
+                    name="featured"
+                    value="0"
+                    )
+                label(for="featured0" class="form-check-label") Không Nổi Bật
             div(class="form-group")
                 label(for="desc") Mô Tả
                 textarea(

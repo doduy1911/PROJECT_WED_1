@@ -1,0 +1,30 @@
+extends ../../layouts/default.pug
+
+block main 
+    h1(class="mb-4") Thông tin Cá Nhân 
+
+    if(user.avatar)
+        img(src=user.avatar width="150px" class="mb-3")
+    else
+        img(src="/admin/images/avatar.png" class="mb-3" width="150px")
+    
+    if(user.fullname)
+        p Họ Tên : <b> #{user.fullname}</b>
+    
+    if(user.email)
+        p Email : <b> #{user.email}</b>
+    
+    if(user.phone)
+        p Số Điện Thoại : <b> #{user.phone}</b>
+
+    p 
+        span Trạng Thái :
+        span 
+            <b> #{user.status == "active" ? "Hoạt Động" : "Dừng Hoạt Động "}</b>
+    
+    if(user.title)
+        p Phân Quyền <b> #{role.title}  </b>
+
+    a(href=`/${prefix}/my_account/edit `
+    class="btn btn-primary"
+    ) Chỉnh sửa Thông tin cá Nhân 

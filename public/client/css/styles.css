@@ -91,3 +91,68 @@
     padding: 3px 10px;
     border-radius: 8px;
   }
+
+  /* sub menu */
+/* Basic styles for the header and menu */
+.header {
+  background-color: #f8f8f8;
+  padding: 10px 0;
+}
+
+.inner-logo img {
+  max-height: 50px;
+}
+
+.inner-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.inner-menu ul li {
+  position: relative;
+  margin-right: 20px;
+}
+
+.inner-menu ul li a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  display: block;
+}
+
+/* Styles for the sub-menu */
+.sub-menu ul {
+  display: none; /* Hide sub-menu by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.sub-menu ul li {
+  margin: 0;
+}
+
+.sub-menu ul li a {
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+/* Show the sub-menu on hover */
+.sub-menu:hover ul {
+  display: block;
+}
+
+/* Additional styling for sub-menu items */
+.sub-menu ul li a:hover {
+  background-color: #f0f0f0;
+}
+
+  /* end sub menu */

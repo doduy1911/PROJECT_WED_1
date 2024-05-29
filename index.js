@@ -13,6 +13,8 @@ const session = require('express-session')
 const moment = require('moment')
 const accounts = require('./models/accounts.model')
 const Role = require('./models/rolse.model')
+const md5 = require('md5');
+
 
 
 
@@ -67,6 +69,8 @@ app.locals.prefix = prefix.prefix_admin;
 app.locals.moment= moment
 app.locals.user= accounts
 app.locals.role=Role
+app.locals.md5=md5
+
 
 
 // // products

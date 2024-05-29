@@ -11,6 +11,7 @@ module.exports.index= async(req, res) => {
             item.priceNew= ((item.price * (100 - item.discountPercentage))/100).toFixed(0)
             return item
         })
+        // console.log(newproduct)
 
         // console.log(newproduct)
     res.render('client/page/products/index.pug', {
@@ -27,6 +28,7 @@ module.exports.detail= async(req, res) => {
             deleted: false,
             status: "active"
         })
+        // console.log(product)
         
         res.render('client/page/products/detail.pug', {
             titlepage: "chi tiết  Sản Phẩm ",

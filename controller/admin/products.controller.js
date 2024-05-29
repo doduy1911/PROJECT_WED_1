@@ -101,7 +101,7 @@ module.exports.changeMulti = async (req,res) => {
             break;
         case "delete-all":
             //nếu muốn xóa cứng thì đổi updatemany thành deletevalue
-            await Product.updateMany({_id:{$in:ids}},{
+            await Product.deleteMany({_id:{$in:ids}},{
                 deleted:true,
                 // deletedAt: new Date()
                 deleteBy: {

@@ -22,6 +22,26 @@ block main
                 name="description"
                 rows="5"
                 ) #{product.description}
+            div(class="form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="featured1"
+                    name="featured"
+                    value="1"
+                    checked=(product.featured === "1" ? true : false)
+                    )
+                label(for="featured1" class="form-check-label") Nổi Bật
+            div(class="form-group form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="featured0"
+                    name="featured"
+                    value="0"
+                    checked=(product.featured === "1" ? true : false)
+                    )
+                label(for="featured0" class="form-check-label") Không Nổi Bật
             div(class="form-group")
                 label(for="price") Giá
                 input(type="number"

@@ -17,7 +17,7 @@ module.exports.index= async(req, res) => {
         
 
 
-        console.log(newproduct)
+        // console.log(newproduct)
     res.render('client/page/products/index.pug', {
         titlepage: "Danh Sách Sản Phẩm ",
         products: newproduct

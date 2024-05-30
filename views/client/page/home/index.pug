@@ -1,4 +1,17 @@
 extends ../../layouts/default.pug
+include ../../mixins/layout-girl.pug
 
 block main 
-    h1 trang chủ
+    .container.my-3
+        .row    
+            .col-12     
+                .box-head 
+                    h1 Danh sách sản phẩm
+                each category in categories
+                    .category
+                        h2= category.title
+                        .products
+                            if productsByCategory[category._id] && productsByCategory[category._id].length > 0
+                                +product-girl(productsByCategory[category._id])
+                            else
+                                p Không có sản phẩm nào trong danh mục này

@@ -35,7 +35,7 @@ module.exports.create =  async (req ,res) =>{
 }
 module.exports.createPost = async (req ,res) =>{
     req.body.password = md5(req.body.password)
-    console.log(req.body)
+    // console.log(req.body)
     const records = new accounts(req.body)
     await records.save();
     res.redirect('/admin/account')
@@ -67,7 +67,7 @@ module.exports.editPost = async (req ,res) =>{
     await accounts.updateOne({_id: id}, req.body);
     req.flash('info',"Cập Nhật Tài Khoản Thành Công")
     
-    console.log(req.body)
+    // console.log(req.body)
     // chỗ này phải là /${prefix}/product
     res.redirect("/admin/account")
 

@@ -1,40 +1,39 @@
 extends ../../layouts/default.pug
 
 block main 
-    .container.my-3 
-        .row   
-            .col-12 
-                if(product.title)
-                    h1(class="mb-4") <b>#{product.title}</b>
+    .product-detail
+        .container.my-5
+            .row   
+                .col-6 
+                    .inner-thumb 
+                        img(src=product.thumbnail, alt=product.title)
+                .col-6 
+                    if product.title
+                        h1.inner-title #{product.title}
 
-                if(product.price)
-                    div(class="mb-4") Giá : <b>#{product.price}</b>
+                    if product.price
+                        div.inner-price-old Giá: <span>#{product.price}₫</span>
 
-                
-                if(product.discountPercentage)
-                    div(class="mb-4") Giảm Giá : <b>#{product.discountPercentage}</b>
+                    if product.discountPercentage
+                        div.inner-percent Giảm giá: <span>#{product.discountPercentage}%</span>
 
-                
-                if(product.stock)
-                    div(class="mb-4") Còn Lại : <b>#{product.stock}</b>
+                    if product.stock
+                        div.inner-stock Còn lại: <span>#{product.stock}</span>
 
-                if(product.thumbnail)
-                    div(class="mb-4")
-                        img(
-                            src=product.thumbnail, 
-                            al=`hình ảnh1 #{product.title}`
-                            style = "width:100px"            
-                            )    
-                if(product.status)
-                    div(class="mb-4")
-                        span Trạng Thái :
-                        if (product.status == "active")
-                            span(class="badge badge-success") Hoạt Động
-                        
-                        else 
-                            span(class="badge badge-danger") Dừng Hoạt Động
-                if(product.position)
-                    div(class="mb-4") Vị Trí : <b>#{product.position}</b>
-                
-                if(product.description)
-                    div(class="mb-4")   #{product.description}
+                    form(action=`/cart/add/${product.id}`, method="post")
+                        input.form-control.mb-2(
+                            type="number",
+                            name="quantity", 
+                            value="1",
+                            min="1",
+                            max=product.stock
+                        )
+                        button.btn.btn-success.btn-block(type="submit") Thêm vào giỏ hàng 
+                    
+            hr
+            .container.my-5
+                .row 
+                    .col-12
+                        h1 Mô tả sản phẩm
+                        if product.description
+                            div.inner-desc #{product.description}

@@ -10,10 +10,11 @@ module.exports.index = async (req ,res) => {
 
     })
     const newproductFeatured = productHeper.priceNewProduct(productFeatured)
+    // console.log(newproductFeatured)
     
     
 
-    console.log(productFeatured)
+    // console.log(productFeatured)
     res.render("client/page/likeProduct/index",{
         titlepage: "Danh Sách Sản Phẩm Yêu Thích",
         productFeatured:newproductFeatured

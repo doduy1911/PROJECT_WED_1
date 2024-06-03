@@ -75,3 +75,19 @@ module.exports.index1 = async (req, res) => {
         cartDetail:cart
     })
 }
+
+module.exports.delete = async (req, res) => {
+    const cartId = req.cookies.cartId;
+    const productid  = req.params.id
+    await Cart.updateOne(
+        {
+            _id: cartId
+        },
+        {
+            "$pull" :{products:{"product_id": productid}}
+        }
+)
+    req.flash("info", "Xóa Sản Phẩm Trong Giỏ Hàng Thành Công")
+    // console.log(productid)
+    res.redirect("back")
+}

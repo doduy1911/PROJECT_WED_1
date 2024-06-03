@@ -20,7 +20,13 @@ block main
                         div.inner-percent Giảm giá: <span>#{product.discountPercentage}%</span>
 
                     if product.stock
-                        div.inner-stock Còn lại: <span>#{product.stock}</span>
+                        div.inner-stock Số Lượng Còn lại: <span>#{product.stock}</span>
+
+                    // Tính giá mới sau khi giảm giá
+                    - var newPrice = (product.price * (100 - product.discountPercentage) / 100).toFixed(0)
+
+                    if product.price
+                        div.inner-price-new Giá: <span>#{newPrice}₫</span>
 
                     form(action=`/cart/add/${product.id}`, method="post")
                         input.form-control.mb-2(

@@ -14,7 +14,7 @@ module.exports.index= async(req, res) => {
             return item
         })
 
-        
+        // console.log(newproduct)
 
 
         // console.log(newproduct)
@@ -25,25 +25,23 @@ module.exports.index= async(req, res) => {
 }
 module.exports.detail= async(req, res) => {
    
-    try {
+    
         const slug = req.params.slug
         const product = await Product.findOne({
             slug: slug,
             deleted: false,
             status: "active"
         })
-        // product.priceNew = helpers.priceNewProducts(product)
-        // console.log(product)
+       
+
+        
         
         
         res.render('client/page/products/detail.pug', {
             titlepage: "chi tiết  Sản Phẩm ",
             product: product
         });
-    } catch (error) {
-        
-        res.redirect("/")
-    }
+  
 }
 
 module.exports.category= async(req, res) => {

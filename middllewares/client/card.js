@@ -14,7 +14,15 @@ module.exports.cardId = async (req, res, next) => {
         res.cookie("cartId", card.id,{
             expires: new  Date(Date.now() + expiresTime),
         }); // Corrected here
-    } 
+    } else{
+         const cart = await Card.findOne({
+            _id : req.cookies.cartId
+         })
+
+         cart.totalQuantity = cart.products.reduce((sum,item)=> sum + item.quantity,0)
+        // 
+        res.locals.minicart = cart;
+    }
     // console.log(req.cookies.cartId)
     // res.cookie('cartId', newCartId, { maxAge: expiresTime, httpOnly: true });
 

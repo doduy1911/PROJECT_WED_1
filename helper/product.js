@@ -7,10 +7,10 @@ module.exports.priceNewProduct = (productFeatured) => {
     return newproductFeatured
 }
 module.exports.priceNewProducts = (productFeatured1) => {
-    const priceNew = productFeatured1.map(item=>{
-        item.priceNew= ((item.price * (100 - item.discountPercentage))/100).toFixed(0)
-        return priceNew
-    }) 
+    const priceNew = productFeatured1.map(item => {
+        item.priceNew = parseFloat(((item.price * (100 - item.discountPercentage)) / 100).toFixed(0));
+        return item;
+    });
 
-   
-}
+    return priceNew;
+};

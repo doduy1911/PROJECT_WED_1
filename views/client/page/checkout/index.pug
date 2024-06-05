@@ -1,0 +1,71 @@
+extends ../../layouts/default
+include ../../mixins/alert.pug
+
+block main 
+    +alert-success(3000)
+    .container.my-3 
+        .row 
+            .col-12 
+                h1 Đặt Hàng         
+        .row 
+            .col-12y
+                table(class="table table-bordered")
+                    thead 
+                        tr 
+                            th STT 
+                            th Ảnh
+                            th Tên
+                            th Giá
+                            th Số Lượng
+                            th Tổng Tiền
+                         
+
+                    tbody 
+                        if(cartDetail.products.length > 0)
+                            each item,index in cartDetail.products
+                                tr 
+                                  
+                                    td #{index + 1}
+                                    td 
+                                        img(src=item.productInfo.thumbnail alt="sản Phẩm 1" width="80px")
+                                    td #{item.productInfo.title}
+                                    td #{item.productInfo.priceNew}
+                                    td #{item.quantity}
+                                    td #{item.totlePrice}
+                                  
+                          
+                                        
+                h3(class="text-right") Tổng Đơn Hàng : #{cartDetail.totlePrice}
+        .row 
+            .col-12 
+                .card.p-4.my-4 
+                    form(action="/checkout/order" method="POST")
+                        div(class="form-group") 
+                            label(for="fullName") Họ Tên 
+                            input(type="text"
+                                class="form-control"
+                                id="fullNanme"
+                                required
+                                name="fullName"
+                            ) 
+                        div(class="form-group") 
+                            label(for="phone") Số Điện Thoại
+                            input(type="text"
+                                class="form-control"
+                                id="phone"
+                                required
+                                name="phone"
+                            ) 
+                        div(class="form-group") 
+                            label(for="address") Địa Chỉ
+                            input(type="text"
+                                class="form-control"
+                                id="address"
+                                required
+                                name="address"
+                            ) 
+                        div(class="form-group")
+                            button(
+                                type="submit"
+                                class="btn btn-success btn-block"
+                            ) Đặt Hàng

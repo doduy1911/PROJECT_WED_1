@@ -6,6 +6,8 @@ const search = require("./search.router.js")
 const cardMiddleware = require("../../middllewares/client/card.js")
 const cardrouter = require("./cart.router.js")
 const checkout = require("./checkout.router.js")
+const user = require("./user.router.js")
+
 
 
 module.exports=(app)=>{
@@ -17,6 +19,8 @@ module.exports=(app)=>{
     app.use("/likeProduct",likeProduct)
     app.use("/search",search)
     app.use("/checkout",checkout)
+    app.use("/user",user)
+
 
 
 

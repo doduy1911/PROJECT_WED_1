@@ -1,0 +1,48 @@
+extends ../../layouts/default
+include ../../mixins/alert.pug
+
+
+block main 
+    +alert-success(2000)
+    +alert-error(2000)
+
+    .controller.my-5
+        .row.justify-content-center
+            .col-8 
+                h1(class="text-center") Đăng Ký Tài Khoản 
+                form(
+                    action="/user/register"
+                     method="POST"
+                     )
+                    div(class="form-group")
+                        label(for="fullName") Họ Và Tên 
+                        input(
+                            type="text"
+                            class="form-control"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Nhập Tên Tài Khoản"
+                            required
+                        )
+                    div(class="form-group")
+                        label(for="email") email 
+                        input(
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="Nhập Tên email"
+                            required
+                        )
+                    div(class="form-group")
+                        label(for="password") Mật Khẩu 
+                        input(
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="Nhập Tên Nhập Mật Khẩu"
+                            required
+                        )
+                    div(class="form-group")
+                        button(class="btn btn-primary btn-block") Đăng Ký

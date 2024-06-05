@@ -68,7 +68,33 @@ module.exports.orderPost = async (req, res) => {
         products:[]
     })
 
-     console.log(order)
+    //  console.log(order)
  
     res.redirect(`/checkout/success/${order.id}`)
+}
+
+
+module.exports.success = async (req,res) => {
+    // console.log(req.params.id)
+
+    const order = await Order.findOne({
+        _id: req.params.id}
+    )
+
+    for(const product of order.products) {
+        const productInfo = await Product.findOne({
+            _id: product.product_id
+        }).select("title thumbnail")
+        product.productInfo = productInfo
+        product.priceNew = parseFloat(((product.price * (100 - product.discountPercentage)) / 100).toFixed(0));
+        product.totalPrice = product.priceNew * product.quantity 
+        // console.log(product.productInfo)
+        // console.log(product.productInfo.thumbnail)
+    }
+    order.totlePrice = order.products.reduce((sum,item) => sum + item.totalPrice,0)
+
+// console.log(order)
+    res.render("client/page/checkout/success",{
+        order:order
+    })
 }

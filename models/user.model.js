@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     status: String,
     deleted: {
         type: String,
-        default: "active ", 
+        default: false, 
     },
     deletedAt: Date
 },{ timestamps: true })

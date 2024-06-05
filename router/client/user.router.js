@@ -5,6 +5,10 @@ const controller = require("../../controller/client/user.controller");
 
 router.get('/register',controller.register)
 router.post('/register',validate.createPost,controller.registerPost)
+router.get('/loign',controller.loign)
+router.post('/loign',controller.loignPost)
+
+
 
 
 module.exports = router

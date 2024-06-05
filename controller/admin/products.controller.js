@@ -136,7 +136,8 @@ module.exports.changeMulti = async (req,res) => {
 module.exports.deleteItem = async (req,res) => {
     const id = req.params.id
     await Product.deleteOne({_id: id})
-    console.log(id)
+
+
     res.redirect("back")
 }
 //[  DELETE] /admin/products/delete
@@ -179,7 +180,7 @@ module.exports.create = async (req,res) => {
 
 module.exports.createPost = async (req,res) => {
     // console.log(res.locals.role)
-    console.log(res.locals.user.id)
+    // console.log(res.locals.user.id)
 
 
     

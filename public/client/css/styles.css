@@ -1,6 +1,6 @@
 .header{
     border-bottom: 1px solid #ddd;
-    padding:  10px 0 ;
+    padding:  10px  ;
 }
 
 .header .inner-logo img {
@@ -10,17 +10,11 @@
 
 .header .inner-menu > ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+
+    
 }
 
-.header .inner-menu > ul >li{
-    margin-left: 20px;
-}
+
 
 .footer{
     background: #333;

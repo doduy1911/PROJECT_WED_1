@@ -1,0 +1,38 @@
+extends ../../layouts/default
+include ../../mixins/alert
+
+block main 
+    +alert-success(2000)
+    +alert-error(2000)
+
+    .controller.my-3 
+        .row.justify-content-center 
+            .col-8 
+                h1(class="text-center") Đổi Mật Khẩu
+                form(action="/user/password/reset"
+                    method="POST")
+                    div(class="form-group")
+                        label(for="password") Mật Khẩu Mới
+                        input(type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            required
+                            )
+
+                    div(class="form-group")
+                        label(for="comfimpassword") Xác Nhận Lại Mật Khẩu
+                        input(type="password"
+                            class="form-control"
+                            id="comfimpassword"
+                            name="comfimpassword"
+                            required
+                            )
+                            
+                    div(class="form-group") 
+                        button(
+                            class="btn btn-primary btn-block"
+                            type="submit") Xác Nhận
+
+
+

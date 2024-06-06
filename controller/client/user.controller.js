@@ -143,5 +143,12 @@ module.exports.otpPost = async (req , res) => {
 
     res.cookie("tokenUser",user.tokenUser)
 
-    res.redirect("user/password/reset")
+    res.redirect("/user/password/reset")
+} 
+
+module.exports.reset = (req , res) => {
+    res.render("client/page/user/resetpass")
+}
+module.exports.resetPost = async (req , res) => {
+
 }

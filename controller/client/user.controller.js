@@ -1,5 +1,8 @@
 const { response } = require("express")
 const User = require("../../models/user.model")
+const ForgotPassword = require("../../models/forgotPassword.mode")
+const generateNumberHepper = require("../../helper/generate")
+
 const md5 = require("md5")
 module.exports.register = (req , res) => {
     res.render("client/page/user/register",{
@@ -64,4 +67,81 @@ module.exports.loignPost = async (req , res) => {
 module.exports.logout = (req , res) => {
     res.clearCookie("tokenUser")
     res.redirect("/")
+}
+
+module.exports.forgot = async (req , res) => {
+    res.render("client/page/user/forgotPassword", {
+        titlepage: "Quên Mật Khẩu"
+    })
+    
+}
+module.exports.forgotPost = async (req , res) => {
+    console.log(req.body.email);
+
+    const email = req.body.email
+    const user = await User.findOne({
+        email: email,
+        deleted: false
+    })
+    if(!user){
+        req.flash("error","email không tồn tại")
+        res.redirect("back")
+        return;
+    }
+    const otp = generateNumberHepper.generateNumber(5)
+    const objectForgotPassword = {
+        email:email,
+        otp:otp,
+        expiresAt:Date.now()
+    }
+    console.log(objectForgotPassword)
+    const forgotPassword = new ForgotPassword(objectForgotPassword)
+    await forgotPassword.save()
+    // việc 1 : tạo mã otp và lưu thông tin yêu cầu vào connection
+
+    // việc 2 : gửi mã otp qua email
+    // việc 3 : lấy mã otp từ email
+    // việc 4 : so sánh mã otp từ email với mã otp từ connection
+    // việc 5 : nếu mã otp từ email và mã otp từ connection trùng nhau thì xóa mã otp từ connection
+    // việc 6 : nếu mã otp từ email và mã otp từ connection trùng nhau thì xóa mã otp từ connection
+    // việc 7 : nếu mã otp từ email và mã otp từ connection trùng nhau thì xóa mã otp từ connection
+    res.redirect(`/user/password/otp?email=${email}`)
+    
+}
+
+module.exports.otp = async (req , res) => {
+    const email = req.query.email
+
+    res.render("client/page/user/otp",{
+        titlepage: "Mã OTP",
+        email: email
+    })
+}
+
+module.exports.otpPost = async (req , res) => {
+    const email = req.body.email
+    const otp = req.body.otp
+
+    const result = await ForgotPassword.findOne(
+        { 
+            email: email,
+            otp:otp
+
+        }
+
+    )
+
+    if(!result){
+        req.flash("error","Mã OTP không đúng")
+        res.redirect("back")
+        return;
+    }
+    const user = await User.findOne({
+        email: email,
+        
+    })
+
+    res.cookie("tokenUser",user.tokenUser)
+
+    res.redirect("user/password/reset")
 }

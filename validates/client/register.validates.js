@@ -50,5 +50,20 @@ module.exports.loginPost=(req,res,next)=>{
     next()
 }
 
+module.exports.forgotPassword=(req,res,next)=>{
+
+    if(!req.body.email){
+        req.flash("error", `email không được để trống`);
+        res.redirect("back");
+        return;
+
+
+    }
+
+
+    next()
+}
+
+
 
 

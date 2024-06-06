@@ -1,0 +1,234 @@
+/* styles for the main container and its elements */
+.container.my-3 {
+    padding: 20px;
+    background-color: #f9f9f9; /* Màu nền nhẹ cho toàn bộ phần chứa */
+    border-radius: 8px; /* Bo góc cho hộp chứa */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+/* styles for the title of the page */
+.box-head h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; /* Màu chữ đậm */
+    text-align: center; /* Canh giữa */
+}
+
+/* styles for each category section */
+.category {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff; /* Màu nền trắng cho mỗi danh mục */
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.category h2 {
+    font-size: 1.5rem;
+    color: #555; /* Màu chữ xám đậm */
+    margin-bottom: 15px;
+}
+
+.category .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Khoảng cách giữa các sản phẩm */
+    justify-content: center; /* Canh giữa các sản phẩm */
+}
+
+/* styles for the case when there are no products in a category */
+.category p {
+    font-size: 1rem;
+    color: #888; /* Màu chữ xám nhạt */
+    text-align: center; /* Canh giữa */
+    margin-top: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .category .products {
+        flex-direction: column;
+        gap: 10px; /* Giảm khoảng cách giữa các sản phẩm trên màn hình nhỏ */
+    }
+    
+    .container.my-3 {
+        padding: 15px;
+    }
+
+    .box-head h1 {
+        font-size: 1.5rem;
+    }
+
+    .category h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* styles for the banner section */
+.banner {
+    width: 100%;
+    height: 250px; /* Chiều cao banner */
+    margin-bottom: 20px; /* Khoảng cách dưới banner */
+    position: relative; /* Để định vị phần tử bên trong */
+    overflow: hidden; /* Cắt hình ảnh thừa ra ngoài */
+    border-radius: 8px; /* Bo góc cho banner */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo hình ảnh bao phủ toàn bộ banner mà không bị biến dạng */
+    display: block;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .banner {
+        height: 150px; /* Giảm chiều cao banner trên màn hình nhỏ */
+    }
+}
+
+
+header.header {
+    background-color: #ffffff; /* Màu nền trắng cho header */
+    padding: 10px 0; /* Khoảng đệm trên dưới */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho header */
+    position: fixed; /* Giữ header cố định khi cuộn */
+    width: 100%; /* Chiều rộng đầy đủ */
+    top: 0; /* Đặt header ở đỉnh */
+    z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+}
+
+.container {
+    max-width: 1200px; /* Giới hạn chiều rộng cho container */
+    margin: 0 auto; /* Canh giữa container */
+    padding: 0 15px; /* Khoảng đệm bên trong */
+}
+
+/* Logo styles */
+.inner-logo {
+    display: flex;
+    align-items: center;
+}
+
+.inner-logo img {
+    max-width: 100px; /* Giới hạn chiều rộng cho logo */
+    height: auto; /* Giữ nguyên tỷ lệ của logo */
+}
+
+/* Search form styles */
+form {
+    width: 100%; /* Chiều rộng đầy đủ */
+}
+
+.form-group {
+    flex-grow: 1; /* Để input tìm kiếm chiếm hết không gian có thể */
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    border-radius: 0; /* Loại bỏ bo góc */
+    border: 1px solid #ddd; /* Viền xám nhạt */
+    padding: 10px; /* Khoảng đệm bên trong input */
+    flex-grow: 1; /* Input chiếm hết chiều rộng có thể */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Màu nền xanh dương */
+    border: none; /* Không có viền */
+    padding: 10px 20px; /* Khoảng đệm cho nút */
+    color: #fff; /* Màu chữ trắng */
+    cursor: pointer; /* Hiển thị con trỏ khi hover */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+
+/* Navigation menu styles */
+.inner-menu {
+    display: flex;
+    justify-content: flex-end; /* Canh phải menu */
+    align-items: center;
+}
+
+.inner-menu ul {
+    list-style: none; /* Loại bỏ bullet */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Hiển thị các mục theo hàng ngang */
+}
+
+.inner-menu li {
+    margin: 0 10px; /* Khoảng cách giữa các mục */
+    position: relative; /* Để định vị submenu */
+}
+
+.inner-menu a {
+    text-decoration: none; /* Loại bỏ gạch dưới */
+    color: #333; /* Màu chữ đậm */
+    font-weight: 500; /* Chữ vừa đậm */
+    padding: 10px 15px; /* Khoảng đệm cho liên kết */
+    transition: color 0.3s; /* Hiệu ứng chuyển đổi màu */
+}
+
+.inner-menu a:hover {
+    color: #007bff; /* Màu chữ khi hover */
+}
+
+/* Sub-menu styles */
+.sub-menu ul {
+    display: none; /* Ẩn sub-menu */
+    position: absolute; /* Định vị tuyệt đối để hiển thị dưới menu chính */
+    top: 100%; /* Đặt dưới mục menu chính */
+    left: 0;
+    background-color: #fff; /* Nền trắng */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho sub-menu */
+    border-radius: 4px; /* Bo góc sub-menu */
+    min-width: 200px; /* Đặt chiều rộng tối thiểu */
+    z-index: 999; /* Đảm bảo sub-menu nằm trên các phần tử khác */
+}
+
+.sub-menu:hover ul {
+    display: block; /* Hiển thị sub-menu khi hover */
+}
+
+.sub-menu ul li {
+    margin: 0;
+}
+
+.sub-menu ul li a {
+    padding: 10px 15px; /* Khoảng đệm cho liên kết */
+    color: #333; /* Màu chữ */
+}
+
+.sub-menu ul li a:hover {
+    background-color: #f8f9fa; /* Màu nền khi hover */
+    color: #007bff; /* Màu chữ khi hover */
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .col-2, .col-3, .col-7 {
+        flex-basis: 100%; /* Mỗi cột chiếm 100% chiều rộng */
+        text-align: center; /* Canh giữa nội dung */
+        margin-bottom: 15px; /* Khoảng cách dưới mỗi cột */
+    }
+
+    .inner-menu {
+        justify-content: center; /* Canh giữa menu trên màn hình nhỏ */
+    }
+
+    .inner-menu ul {
+        flex-direction: column; /* Xếp chồng các mục menu theo chiều dọc */
+    }
+
+    .inner-menu li {
+        margin: 5px 0; /* Khoảng cách giữa các mục trên màn hình nhỏ */
+    }
+}
+
+

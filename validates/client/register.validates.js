@@ -30,4 +30,25 @@ module.exports.createPost=(req,res,next)=>{
     next()
 }
 
+module.exports.loginPost=(req,res,next)=>{
+
+    if(!req.body.email){
+        req.flash("error", `email không được để trống`);
+        res.redirect("back");
+        return;
+
+
+    }
+    if(!req.body.password) {
+        req.flash("error", `PassWord không được để trống`);
+        res.redirect("back");
+        return;
+
+
+    }
+
+    next()
+}
+
+
 

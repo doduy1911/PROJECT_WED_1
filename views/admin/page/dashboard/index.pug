@@ -1,8 +1,12 @@
 extends ../../layouts/default.pug
-block main 
-    h1 trang tổng quan 
-    div #{user}
-    div --------------
-    div #{role.permissions}
 
+block main
+    h1 Trang tổng quan
+
+    div
+        h2 Thông tin người dùng
+        p Tên đầy đủ: #{user.fullname}
+        p Email: #{user.email}
+        p Số điện thoại: #{user.phone}
+        p Trạng thái: #{user.status}
 

@@ -1,96 +1,118 @@
-.header{
-    border-bottom: 1px solid #ddd;
-    padding:  10px  ;
+.header {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
 }
 
 .header .inner-logo img {
-    max-height: 50px;
-    max-width: 100%;
+  max-height: 50px;
+  max-width: 100%;
 }
 
-.header .inner-menu > ul {
-    list-style: none;
-
-    
+.header .inner-menu {
+  font-size: 16px;
+  font-weight: 600;
 }
 
+.header .inner-menu>ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* margin-top: 18px; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
 
+.header .inner-menu a:hover {
+  color: blue;
+}
 
-.footer{
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
+.header .inner-menu>ul>li {
+  margin-left: 10px;
+}
+
+.footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
 }
 
 .box-head {
-    margin-bottom: 30px;
-  }
-  
-  .box-head .inner-title {
-    margin-bottom: 0;
-    font-size: 28px;
-    font-weight: 600;
-    color: green;
-  }
-  /* End box-head */
-  
-  /* product-item */
-  .product-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .product-item .inner-image {
-    width: 100%;
-    aspect-ratio: 4/3;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .product-item .inner-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .product-item .inner-content {
-    padding: 15px;
-  }
-  
-  .product-item .inner-content .inner-title {
-    font-size: 20px;
-    font-weight: 600;
-  }
-  
-  .product-item .inner-content .inner-price-new {
-    font-size: 18px;
-    font-weight: 600;
-    color: green;
-  }
-  
-  .product-item .inner-content .inner-price-old {
-    font-size: 18px;
-    font-weight: 600;
-    color: red;
-      text-decoration: line-through;
-  }
-  
-  .product-item .inner-content .inner-discount {
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-    background: red;
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 8px;
-  }
+  margin-bottom: 30px;
+}
 
-  /* sub menu */
+.box-head .inner-title {
+  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: green;
+}
+
+/* End box-head */
+
+/* product-item */
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 450px;
+}
+
+.product-item .inner-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-item .inner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-item .inner-content {
+  padding: 15px;
+}
+
+.product-item .inner-content .inner-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.product-item .inner-content .inner-title a {
+  text-decoration: none;
+}
+
+.product-item .inner-content .inner-price-new {
+  font-size: 18px;
+  font-weight: 600;
+  color: green;
+}
+
+.product-item .inner-content .inner-price-old {
+  font-size: 18px;
+  font-weight: 600;
+  color: red;
+  text-decoration: line-through;
+}
+
+.product-item .inner-content .inner-discount {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  background: red;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+
+/* sub menu */
 /* Basic styles for the header and menu */
 .header {
   background-color: #f8f8f8;
-  padding: 10px 0;
+  padding: 20px 0;
 }
 
 .inner-logo img {
@@ -106,19 +128,20 @@
 
 .inner-menu ul li {
   position: relative;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .inner-menu ul li a {
   text-decoration: none;
   color: #333;
-  padding: 10px;
+  padding: 7px;
   display: block;
 }
 
 /* Styles for the sub-menu */
 .sub-menu ul {
-  display: none; /* Hide sub-menu by default */
+  display: none;
+  /* Hide sub-menu by default */
   position: absolute;
   top: 100%;
   left: 0;
@@ -127,6 +150,9 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 120px;
+  font-size: 17px;
+  border-radius: 10px;
   z-index: 1000;
 }
 
@@ -149,29 +175,40 @@
   background-color: #f0f0f0;
 }
 
-  /* end sub menu */
+/* end sub menu */
 
-  .inner-thumb img {
-    max-width: 100%; /* Đảm bảo ảnh không vượt quá chiều rộng của cột */
-    height: auto; /* Chiều cao tự động điều chỉnh để duy trì tỷ lệ khung hình */
-    display: block; /* Loại bỏ khoảng trắng dư thừa dưới ảnh */
-    border-radius: 10px; /* Bo góc cho ảnh */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng bóng đổ cho ảnh */
+.inner-thumb img {
+  max-width: 100%;
+  /* Đảm bảo ảnh không vượt quá chiều rộng của cột */
+  height: auto;
+  /* Chiều cao tự động điều chỉnh để duy trì tỷ lệ khung hình */
+  display: block;
+  /* Loại bỏ khoảng trắng dư thừa dưới ảnh */
+  border-radius: 10px;
+  /* Bo góc cho ảnh */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Tạo hiệu ứng bóng đổ cho ảnh */
 }
 
 .container.my-5 {
-    margin-top: 50px; /* Khoảng cách từ phần tử container đến phần tử trên */
-    margin-bottom: 50px; /* Khoảng cách từ phần tử container đến phần tử dưới */
+  margin-top: 50px;
+  /* Khoảng cách từ phần tử container đến phần tử trên */
+  margin-bottom: 50px;
+  /* Khoảng cách từ phần tử container đến phần tử dưới */
 }
 
 .row {
-    margin-left: -15px; /* Loại bỏ margin trái của dòng để không làm phìn bố cục */
-    margin-right: -15px; /* Loại bỏ margin phải của dòng để không làm phìn bố cục */
+  margin-left: -15px;
+  /* Loại bỏ margin trái của dòng để không làm phìn bố cục */
+  margin-right: -15px;
+  /* Loại bỏ margin phải của dòng để không làm phìn bố cục */
 }
 
 .col-6 {
-    padding-left: 15px; /* Tạo padding bên trái cho cột */
-    padding-right: 15px; /* Tạo padding bên phải cho cột */
+  padding-left: 15px;
+  /* Tạo padding bên trái cho cột */
+  padding-right: 15px;
+  /* Tạo padding bên phải cho cột */
 }
 
 .product-detail {
@@ -183,7 +220,7 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .inner-title {
@@ -230,7 +267,12 @@
   margin-top: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #333;
 }
 
@@ -239,44 +281,12 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 50px;
 }
 
-.row {
-  margin-bottom: 30px;
-}
+/* .row {
+margin-bottom: 30px;
+} */
 
-/* show alert */
-[show-alert] {
-  position: fixed;
-  top: 70px;
-  right: 15px;
-  z-index: 9999;
-}
-
-[show-alert].alert-hidden {
-  animation-name: alert-hidden;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-}
-
-@keyframes alert-hidden {
-  from {
-    right: 15px;
-  }
-  to {
-    right: -100%;
-    display: none;
-  }
-}
-
-[show-alert] [close-alert] {
-  background: #ffffffc4;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  text-align: center;
+.footer {
+  padding: 10px 0;
+  font-size: 18px;
   font-weight: 600;
-  border-radius: 50%;
-  cursor: pointer;
 }
-
-/* end show alert */

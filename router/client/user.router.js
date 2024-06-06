@@ -8,7 +8,15 @@ router.post('/register',validate.createPost,controller.registerPost)
 router.get('/loign',controller.loign)
 router.post('/loign',controller.loignPost)
 router.get('/logout',controller.logout)
+router.get('/password/forgot',controller.forgot)
+router.post('/password/forgot',validate.forgotPassword,controller.forgotPost)
+router.get('/password/otp',controller.otp)
+router.post('/password/otp',controller.otpPost)
 
+
+
+
+ 
 
 
 

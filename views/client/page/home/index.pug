@@ -1,14 +1,17 @@
 extends ../../layouts/default.pug
 include ../../mixins/layout-girl.pug
+    link(rel="stylesheet", href="/client/css/css-a.css")
 
 block main 
     .container.my-3
+        .banner
+            img(src="https://wiki.tino.org/wp-content/uploads/2021/08/word-image-1249.png", alt="Banner Image")
         .row    
             .col-12     
                 .box-head 
                     h1 Danh sách sản phẩm
                 each category in categories
-                    .category
+                    .category(class="text-center")
                         h2= category.title
                         .products
                             if productsByCategory[category._id] && productsByCategory[category._id].length > 0

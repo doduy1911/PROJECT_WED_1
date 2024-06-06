@@ -1,0 +1,39 @@
+extends ../../layouts/default
+include ../../mixins/alert
+
+block main 
+    +alert-success(2000)
+    +alert-error(2000)
+
+    .controller.my-3 
+        .row.justify-content-center 
+            .col-8 
+                h1(class="text-center") Nhập Mã OTP Để Xác Thực
+                form(action="/user/password/otp"
+                    method="POST")
+                    div(class="form-group")
+                        label(for="email") Email 
+                        input(type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            value=email
+                            required
+                            readonly)
+
+                    div(class="form-group")
+                        label(for="otp") Mã OTP 
+                        input(type="text"
+                            class="form-control"
+                            id="otp"
+                            name="otp"
+                            required
+                            )
+                            
+                    div(class="form-group") 
+                        button(
+                            class="btn btn-primary btn-block"
+                            type="submit") Xác Nhận
+
+
+

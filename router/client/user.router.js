@@ -13,7 +13,7 @@ router.post('/password/forgot',validate.forgotPassword,controller.forgotPost)
 router.get('/password/otp',controller.otp)
 router.post('/password/otp',controller.otpPost)
 router.get('/password/reset',controller.reset)
-router.post('/password/reset',controller.resetPost)
+router.post('/password/reset',validate.forgotPasswordPost,controller.resetPost)
 
 
 

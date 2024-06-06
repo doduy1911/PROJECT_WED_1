@@ -64,6 +64,33 @@ module.exports.forgotPassword=(req,res,next)=>{
     next()
 }
 
+module.exports.forgotPasswordPost=(req,res,next)=>{
+
+    if(!req.body.password){
+        req.flash("error", `Mật Khẩu không được để trống`);
+        res.redirect("back");
+        return;
+
+
+    }
+    if(!req.body.comfimpassword){
+        req.flash("error", `Mật Khẩu không được để trống`);
+        res.redirect("back");
+        return;
+
+
+    }  if(req.body.password != req.body.comfimpassword ){
+        req.flash("error", `Mật Khẩu không trùng khớp`);
+        res.redirect("back");
+        return;
+
+
+    }
+
+
+    next()
+}
+
 
 
 

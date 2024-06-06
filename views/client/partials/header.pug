@@ -38,8 +38,12 @@ header.header
                         li  
                             a(href="/likeProduct") Sản Phẩm Yêu Thích 
                         li  
-                            a(href="/cart") Giỏ Hàng (#{minicart.totalQuantity})             
-                        li  
-                            a(href="/user/loign") Đăng Nhập 
-                        //- div #{user}
+                            a(href="/cart") Giỏ Hàng (#{minicart.totalQuantity})  
+                        if(user.fullName)  
+                            li  
+                                a(href="/user/logout") Đăng Xuất
+                        else         
+                            li  
+                                a(href="/user/loign") Đăng Nhập 
+                        
                         

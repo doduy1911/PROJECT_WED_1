@@ -56,7 +56,12 @@ module.exports.loignPost = async (req , res) => {
     return;
    }
    res.cookie("tokenUser", user.tokenUser)
-console.log(user)
-console.log(password)
+// console.log(user)
+// console.log(password)
     res.redirect("/")
 } 
+
+module.exports.logout = (req , res) => {
+    res.clearCookie("tokenUser")
+    res.redirect("/")
+}

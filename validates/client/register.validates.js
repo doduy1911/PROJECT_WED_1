@@ -91,6 +91,15 @@ module.exports.forgotPasswordPost=(req,res,next)=>{
     next()
 }
 
+module.exports.auth = (req,res,next) =>{
+    const tokenID = req.cookies.tokenUser
+    if(!tokenID){
+        res.redirect("/user/loign")
+        return ;
+    }
+    next();
+}
+
 
 
 

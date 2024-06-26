@@ -39,7 +39,11 @@ header.header
                             a(href="/likeProduct") Sản Phẩm Yêu Thích 
                         li  
                             a(href="/cart") Giỏ Hàng (#{minicart.totalQuantity})  
-                        if(user.fullName)  
+                        if(user.fullName) 
+                            li  
+                                a(href="/chat") Chat
+                            li  
+                                a(href="/user/info") #{user.fullName}
                             li  
                                 a(href="/user/logout") Đăng Xuất
                         else         

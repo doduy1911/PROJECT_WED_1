@@ -4,6 +4,7 @@ const ForgotPassword = require("../../models/forgotPassword.mode")
 const generateNumberHepper = require("../../helper/generate")
 const sendMailHepper = require("../../helper/sendMail")
 const md5 = require("md5")
+const Cart = require("../../models/card.model")
 module.exports.register = (req , res) => {
     res.render("client/page/user/register",{
         titlepage : "Đăng Ký "
@@ -57,7 +58,15 @@ module.exports.loignPost = async (req , res) => {
     req.flash("error","3 Tài Khoản Đăng Bị khóa")
     res.redirect("back")
     return;
-   }
+   } 
+   console.log(user.id)
+   console.log(req.cookies.cartId)
+
+   await Cart.updateOne({
+    _id:req.cookies.cartId
+   },{
+    user_id : user.id
+   })
    res.cookie("tokenUser", user.tokenUser)
 // console.log(user)
 // console.log(password)
@@ -238,4 +247,8 @@ module.exports.resetPost = async (req , res) => {
 
     // console.log(tokenUser)
     res.redirect("/")
+}
+
+module.exports.info = async (req , res) => {
+    res.render("client/page/user/info.pug")
 }

@@ -10,10 +10,18 @@ const flash = require('express-flash')
 const cookieParser = require('cookie-parser')
 // tương tự như parser
 const session = require('express-session')
+// định dạng ngày tháng cho dữ liệu
 const moment = require('moment')
 const accounts = require('./models/accounts.model')
 const Role = require('./models/rolse.model')
+// md5 mã Hóa mật Khẩu
 const md5 = require('md5');
+// nhúng thêm thư viện http để tạp ra server gửi tin nhắn 
+const http = require("http")
+// nhúng socket.io vào 
+const { Server } = require("socket.io");
+
+
 
 
 
@@ -33,6 +41,13 @@ var bodyParser = require('body-parser')
 app.set('views', `${__dirname}/views`)
 
 app.set('view engine', 'pug')
+// socket.io
+const server = http.createServer(app);
+const io = new Server(server);
+global._io = io;
+// bắt sự kiện kết nối thành công cho socket
+  
+
 // satrt flash
 app.use(cookieParser('dodinhduythongbao'));
 app.use(session({
@@ -78,6 +93,6 @@ app.locals.md5=md5
 const database = require("./config/database.js")
 database.connect()
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`lang nghe cong ${port}`)
 })

@@ -8,6 +8,7 @@ const cardrouter = require("./cart.router.js")
 const checkout = require("./checkout.router.js")
 const user = require("./user.router.js")
 const userMiddleware = require("../../middllewares/client/user.js")
+const chat  = require("./chat.router.js")
 
 
 
@@ -22,6 +23,8 @@ module.exports=(app)=>{
     app.use("/search",search)
     app.use("/checkout",checkout)
     app.use("/user",user)
+    app.use("/chat",chat)
+
 
 
 

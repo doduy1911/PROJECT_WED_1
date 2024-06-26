@@ -14,6 +14,8 @@ router.get('/password/otp',controller.otp)
 router.post('/password/otp',controller.otpPost)
 router.get('/password/reset',controller.reset)
 router.post('/password/reset',validate.forgotPasswordPost,controller.resetPost)
+router.get('/info',controller.info)
+
 
 
 

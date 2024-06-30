@@ -358,6 +358,15 @@ margin-bottom: 30px;
   align-items: center;
 }
 
+/* ân =r hiện icon */
+.tooltip {
+  visibility: hidden;
+}
+.tooltip:not(.shown) {
+  visibility: visible;
+  opacity: 1;
+}
+
 
 .chat .inner-form input {
   flex: 1;

@@ -42,4 +42,26 @@ socket.on("server_return_mess",(data)=>{
     )
 
         body.appendChild(div)
+        bodyChat.scrollTop = bodyChat.scrollHeight;
+
 })
+// scroll chat 
+const bodyChat = document.querySelector(".chat .inner-body")
+if(bodyChat){
+    bodyChat.scrollTop = bodyChat.scrollHeight;
+}
+// end scrool chat
+// nhúng icon vào đoạn chat
+// document.querySelector('emoji-picker')
+//   .addEventListener('emoji-click', event => console.log(event.detail));
+const emojiPicker = document.querySelector("emoji-picker")
+if(emojiPicker){
+    const inputChat = document.querySelector(".chat .inner-form input[name='content']");
+    // console.log(inputChat)
+    emojiPicker.addEventListener("emoji-click",(event)=>{
+        const icon = event.detail.unicode;
+        // console.log(icon)
+        inputChat.value = inputChat.value + icon;
+    })
+}
+//   end 

@@ -16,6 +16,8 @@ if (formSendData) {
         if (content) {
             socket.emit("client_send_mess", content)
             e.target.elements.content.value = ""
+            socket.emit("CLIENT_SEND_TYPING","hidden");
+
         }
     })
 }
@@ -25,6 +27,7 @@ socket.on("server_return_mess", (data) => {
     const body = document.querySelector(".chat .inner-body");
     const div = document.createElement("div")
     const myId = document.querySelector("[my-id]").getAttribute("my-id")
+    const boxtyping = document.querySelector(".inner-list -typing")
     let HtmlFullName = ""
     if (myId == data.userId) {
         div.classList.add("inner-outgoing")
@@ -41,7 +44,7 @@ socket.on("server_return_mess", (data) => {
         `
     )
 
-    body.appendChild(div)
+    body.insertBefore(div,boxtyping)
     bodyChat.scrollTop = bodyChat.scrollHeight;
 
 })
@@ -55,12 +58,21 @@ if (bodyChat) {
 // document.querySelector('emoji-picker')
 //   .addEventListener('emoji-click', event => console.log(event.detail));
 const emojiPicker = document.querySelector("emoji-picker")
-
+// show typing 
+    var timeOut;
+    const showtyping = ()=>{
+        socket.emit("CLIENT_SEND_TYPING","show");
+        clearTimeout(timeOut)
+       timeOut =  setTimeout(() => {
+            socket.emit("CLIENT_SEND_TYPING","hidden");
+        },3000)
+    }
+// end showtyping
 // ẩn hiện icon
 const buttonIcon = document.querySelector(".button-icon")
 if (buttonIcon) {
     const toolTip = document.querySelector(".tooltip");
-    console.log(toolTip)
+    // console.log(toolTip)
     Popper.createPopper(buttonIcon, toolTip)
 
     buttonIcon.onclick = () => {
@@ -71,6 +83,8 @@ if (buttonIcon) {
 }
 //  end ẩn hiện icon
 //  inrsrt icon
+var timeOut ;
+
 if (emojiPicker) {
     const inputChat = document.querySelector(".chat .inner-form input[name='content']");
     // console.log(inputChat)
@@ -78,6 +92,65 @@ if (emojiPicker) {
         const icon = event.detail.unicode;
         // console.log(icon)
         inputChat.value = inputChat.value + icon;
+        const end = inputChat.value.length;
+        inputChat.setSelectionRange(end,end)
+        inputChat.focus();
+        showtyping();
+    });
+
+    var timeOut ;
+
+    inputChat.addEventListener("keyup",()=>{
+        showtyping();
     })
 }
+const elementsListTyping = document.querySelector(".chat .inner-list-typing") 
+if(elementsListTyping){
+
+
+// SERVER_RETURN_TYPING
+socket.on("SERVER_RETURN_TYPING",(data)=>{
+    if(data.type == "show"){
+    const exitsTyping = elementsListTyping.querySelector(`[user-id = "${data.userId}"]`)
+    // console.log(data)
+  if(!exitsTyping){
+    const boxTyping = document.createElement("div")
+    boxTyping.classList.add("box-typing")
+    boxTyping.setAttribute("user-id",data.userId)
+    boxTyping.innerHTML=
+    `<div class="box-typing">
+        <div class="inner-name ">${data.fullName}</div>
+            <div class="inner-dots">
+                <span> </span>
+                <span> </span>
+                <span> </span>
+    </div>
+</div>
+
+    `;
+    elementsListTyping.appendChild(boxTyping)}
+    bodyChat.scrollTop = bodyChat.scrollHeight;
+
+}else{
+    const boxtypingRemove = elementsListTyping.querySelector(`[user-id="${data.userId}"]`)
+    if(boxtypingRemove){
+        elementsListTyping.removeChild(boxtypingRemove)
+    }
+}
+})
+
+
+}
+// SERVER_RETURN_TYPING
 //   end 
+
+// `
+// <div class="box-typing">
+//     <div class="inner-name ">Đỗ Đình DUy</div>
+//         <div class="inner-dots">
+//             <span> </span>
+//             <span> </span>
+//             <span> </span>
+//     </div>
+// </div>
+// `

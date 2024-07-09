@@ -11,7 +11,7 @@ module.exports.index = async (req, res) => {
     _io.once("connection", (socket) => {
         // console.log("Một Người Dùng Đã Kết Nới  ",socket.id)
 
-        socket.on("client_send_mess", async (content) => {
+    socket.on("client_send_mess", async (content) => {
             // console.log(userId)
             // console.log(content)
             // lưu vào data base
@@ -30,6 +30,16 @@ module.exports.index = async (req, res) => {
             });
 
         });
+
+    socket.on("CLIENT_SEND_TYPING",(type)=>{
+        // console.log(type)
+        socket.broadcast.emit("SERVER_RETURN_TYPING",{
+            userId: userId,
+            fullName: fullName,
+            type: type
+
+        })
+    })
     });
     // find thì lấy ra array
     // findOne thì lấy ra object

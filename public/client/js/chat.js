@@ -195,3 +195,11 @@ socket.on("SERVER_RETURN_TYPING",(data)=>{
 // </div>
 // `
 
+// preview images
+const chatBody  = document.querySelector(".chat .inner-body")
+console.log(chatBody )
+if(chatBody){
+    const gallery = new Viewer(bodyChat);
+}
+// end preview images 
+

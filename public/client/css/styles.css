@@ -358,6 +358,16 @@ margin-bottom: 30px;
   align-items: center;
 }
 
+/* ân =r hiện icon */
+.tooltip {
+  visibility: hidden;
+}
+.tooltip:not(.shown) {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 .chat .inner-form input {
   flex: 1;
   height: 32px;
@@ -379,3 +389,129 @@ margin-bottom: 30px;
 
 
  /* end foem chat  */
+
+ /* typing cho chat  */
+ .box-typing{
+  position: relative;
+ }
+ .box-typing .inner-dots{
+  position: relative;
+  height: 20px;
+  width: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 45px;
+  margin-top: 2px;
+
+ }
+
+ .box-typing .inner-dots span {
+  animation:blink 1.5s infinite;
+  height: 5px;
+  width: 5px;
+  background: black;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 3px;
+ }
+ .box-typing .inner-dots span:nth-child(2){
+  animation-delay: 0.2s;
+
+ }
+ .box-typing .inner-dots span:nth-child(3){
+  animation-delay: 0.4s;
+
+ }
+
+ @keyframes blink {
+  0% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+  
+ }
+
+
+
+ /* chat img */
+ .chat .inner-body .inner-images img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover; /* Thay đổi từ contain thành cover để hình ảnh lấp đầy khung hình */
+  background: white;
+  padding: 5px; /* Giảm padding để hình ảnh không quá nhỏ */
+  margin: 0 5px 5px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng mờ để hình ảnh nổi bật hơn */
+}
+
+.chat .inner-body .inner-outgoing .inner-images {
+  margin-left: auto;
+  text-align: right;
+}
+
+.chat .inner-body .inner-outgoing .inner-images img {
+  margin: 0 0 5px 5px;
+}
+
+.chat .inner-body .inner-content {
+  background: #f1f1f1; /* Thêm nền màu xám nhạt để làm nổi bật nội dung */
+  padding: 10px; /* Thêm padding để nội dung không sát mép */
+  border-radius: 5px; /* Làm bo góc để giao diện trông mềm mại hơn */
+  max-width: 70%; /* Giới hạn độ rộng của nội dung để tránh kéo dài toàn bộ chiều rộng */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng mờ */
+  margin-bottom: 10px; /* Thêm khoảng cách giữa các tin nhắn */
+}
+
+.chat .inner-body .inner-incoming .inner-content {
+  background: #e1f5fe; /* Thêm nền màu xanh nhạt cho tin nhắn nhận được */
+}
+
+.chat .inner-body .inner-outgoing .inner-content {
+  background: #c8e6c9; /* Thêm nền màu xanh nhạt cho tin nhắn gửi đi */
+}
+
+.chat .inner-foot .inner-form {
+  display: flex;
+  align-items: center;
+  padding: 10px; /* Thêm padding để các phần tử trong form không sát mép */
+  background: #fff;
+  border-top: 1px solid #ddd; /* Thêm đường viền trên để tách biệt với nội dung trò chuyện */
+}
+
+.chat .inner-foot .inner-form input[type="text"] {
+  flex: 1; /* Cho phép input kéo dài chiếm hết chiều rộng còn lại */
+  padding: 10px;
+  border: 1px solid #ddd; /* Đường viền mỏng cho input */
+  border-radius: 5px; /* Làm bo góc input */
+  margin-right: 10px; /* Khoảng cách giữa input và nút gửi */
+}
+
+.chat .inner-foot .inner-form .button-icon {
+  cursor: pointer; /* Thêm con trỏ chuột để người dùng biết đây là nút bấm */
+}
+
+.chat .inner-preview-images .label-container{
+  display: none;
+}
+.chat .inner-preview-images .input-container{
+  display: none;
+}
+.chat .inner-preview-images .image-preview{
+  height: auto;
+  padding: 0;;
+  border-radius: 00;
+}
+
+.chat .inner-preview-images .image-preview-item{
+  width: 90px;
+  background-size: contain;
+}
+ /* end chat img  */
+ /* typing cho chat end  */

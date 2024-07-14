@@ -1,5 +1,12 @@
 // client_send_mess
 import * as Popper from 'https://cdn.jsdelivr.net/npm/@popperjs/core@^2/dist/esm/index.js'
+
+// file-upload-with-preview
+const upload = new FileUploadWithPreview.FileUploadWithPreview('upload-image',{
+    multiple:true,
+    maxFileCount:6
+});
+// end // file-upload-with-preview
 // lấy ra form chat
 const formSendData = document.querySelector(".chat .inner-form")
 // console.log(formSendData)
@@ -12,11 +19,19 @@ if (formSendData) {
         e.preventDefault();
         // lấy ra value của form đã submt lên 
         const content = e.target.elements.content.value
+        // lấy ra hình ảnh đã submit lên 
+        const images = upload.cachedFileArray || [];
+        // console.log(images)
         // console.log(content)
-        if (content) {
-            socket.emit("client_send_mess", content)
-            e.target.elements.content.value = ""
+        if (content || images.length > 0 ) {
+            socket.emit("client_send_mess", {
+                content:content,
+                images:images
+            })
+            e.target.elements.content.value = "";
+            upload.resetPreviewPanel();
             socket.emit("CLIENT_SEND_TYPING","hidden");
+            console.log(images)
 
         }
     })
@@ -29,6 +44,8 @@ socket.on("server_return_mess", (data) => {
     const myId = document.querySelector("[my-id]").getAttribute("my-id")
     const boxtyping = document.querySelector(".inner-list -typing")
     let HtmlFullName = ""
+    let HtmlContent = ""
+    let HtmlImg = ""
     if (myId == data.userId) {
         div.classList.add("inner-outgoing")
     }
@@ -38,11 +55,34 @@ socket.on("server_return_mess", (data) => {
 
 
     }
+    if(data.content){
+        HtmlContent = `
+                    <div class="inner-content"> ${data.content} </div>
+
+        `
+    }
+
+
+    
+    if(data.images.length  > 0 ) {
+        HtmlImg += `
+        <div class="inner-images">
+        `;
+        for (const image of data.images) {
+        HtmlImg += data.images`
+        <img src="${image}>
+
+        `}
+        HtmlImg += `</div>`
+       
+    }
     div.innerHTML = (`
             ${HtmlFullName}
-            <div class="inner-content"> ${data.content} </div>
+            ${HtmlContent}
         `
     )
+
+   
 
     body.insertBefore(div,boxtyping)
     bodyChat.scrollTop = bodyChat.scrollHeight;
@@ -154,3 +194,4 @@ socket.on("SERVER_RETURN_TYPING",(data)=>{
 //     </div>
 // </div>
 // `
+
